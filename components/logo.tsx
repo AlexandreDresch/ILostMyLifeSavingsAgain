@@ -4,7 +4,11 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function Logo() {
+interface LogoProps {
+  className?: string;
+}
+
+export default function Logo({ className }: LogoProps) {
   return (
     <Link href="/" className="flex items-center">
       <motion.span whileHover={{ scale: 1.2 }} className="flex items-center">
@@ -13,6 +17,8 @@ export default function Logo() {
           alt="Logo"
           width={100}
           height={100}
+          className={className}
+          priority
         />
       </motion.span>
     </Link>
