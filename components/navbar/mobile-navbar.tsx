@@ -153,7 +153,7 @@ export default function MobileNavbar() {
   return (
     <>
       <header className="block border-separate border-b bg-background md:hidden">
-        <nav className="container flex items-center justify-between px-4 py-3">
+        <nav className="flex items-center justify-between px-4 py-3">
           <Logo className="size-10" />
 
           <Button
@@ -182,6 +182,7 @@ export default function MobileNavbar() {
           className="fixed top-0 right-0 h-full w-80 bg-background border-l shadow-xl z-40 md:hidden"
         >
           <div className="flex flex-col h-full pt-20 px-6">
+            
             <div className="flex flex-col space-y-2">
               {navbarItems.map((item, index) => (
                 <div

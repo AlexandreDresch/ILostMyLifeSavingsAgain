@@ -3,7 +3,7 @@
 import { Moon, Sun } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 
 interface ThemeToggleProps {
@@ -11,6 +11,8 @@ interface ThemeToggleProps {
 }
 
 export function ThemeToggle({ className }: ThemeToggleProps) {
+  const [mounted, setMounted] = useState(false);
+
   const { resolvedTheme, setTheme } = useTheme();
   const isDark = resolvedTheme === "dark";
 
@@ -19,6 +21,10 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
   const moonIconRef = useRef<HTMLDivElement>(null);
   const sunIconRef = useRef<HTMLDivElement>(null);
   const backgroundRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     if (
@@ -142,6 +148,11 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
       },
     });
   };
+
+  if (!mounted) {
+    // Avoid hydration mismatch by not rendering toggle until after mount
+    return <div className="w-16 h-8 rounded-full bg-zinc-200" />;
+  }
 
   return (
     <div
