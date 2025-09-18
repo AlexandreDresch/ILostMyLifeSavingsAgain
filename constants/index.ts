@@ -56,3 +56,13 @@ export const currencies = [
     locale: "pt-BR",
   },
 ];
+
+export const dashboardGreetingWords = [
+  "work!",
+  "fancy ✽",
+  "right",
+  "fast",
+  "fun",
+  "rock",
+  "🕶️🕶️🕶️",
+];
