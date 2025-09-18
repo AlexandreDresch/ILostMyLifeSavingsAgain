@@ -23,9 +23,9 @@ export default async function Wizard() {
     <div className="container flex max-w-2xl flex-col items-center justify-between gap-4 bg-pattern">
       <div>
         <h1 className="text-2xl font-bold text-center">
-          Welcome to the Setup Wizard
+          Welcome to the Setup Wizard,
           {user.username ? (
-            <span className="ml-2 font-bold"> {user.firstName}!</span>
+            <span className="ml-2 font-bold">{user.firstName}!</span>
           ) : (
             "!"
           )}
