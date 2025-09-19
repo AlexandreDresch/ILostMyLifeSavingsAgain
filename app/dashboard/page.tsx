@@ -28,7 +28,7 @@ export default async function Dashboard() {
         <div className="container flex flex-wrap items-center justify-between gap-6 py-8">
           <p>
             Welcome back,{" "}
-            {user.username ? (
+            {user.firstName ? (
               <span className="font-bold">{user.firstName}</span>
             ) : (
               "User"
