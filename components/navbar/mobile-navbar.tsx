@@ -152,7 +152,7 @@ export default function MobileNavbar() {
 
   return (
     <>
-      <header className="block border-separate border-b bg-background md:hidden">
+      <header className="block border-separate border-b border-slate-700/50 bg-background md:hidden">
         <nav className="flex items-center justify-between px-4 py-3">
           <Logo className="size-10" />
 
@@ -171,7 +171,7 @@ export default function MobileNavbar() {
       {isOpen && (
         <div
           ref={overlayRef}
-          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 md:hidden"
+          className="fixed inset-0 bg-black/90 backdrop-blur-sm z-40 md:hidden"
           onClick={closeMenu}
         />
       )}
@@ -179,7 +179,7 @@ export default function MobileNavbar() {
       {isOpen && (
         <div
           ref={menuRef}
-          className="fixed top-0 right-0 h-full w-80 bg-background border-l shadow-xl z-40 md:hidden"
+          className="fixed top-0 right-0 h-full w-80 bg-background border-l border-slate-700/50 shadow-xl z-40 md:hidden"
         >
           <div className="flex flex-col h-full pt-20 px-6">
             

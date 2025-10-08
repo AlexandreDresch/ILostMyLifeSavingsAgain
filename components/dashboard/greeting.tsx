@@ -8,17 +8,20 @@ import { dashboardGreetingWords } from "@/constants";
 export default function Greeting() {
   return (
     <LayoutGroup>
-      <motion.p className="flex whitespace-pre border px-4 py-2 rounded-sm" layout>
+      <motion.p
+        className="flex flex-col whitespace-pre px-4 py-2 rounded-sm sm:flex-row"
+        layout
+      >
         <motion.span
-          className="pt-0.5 sm:pt-1 md:pt-0"
+          className="pt-0.5 sm:pt-1 md:pt-0 sm:text-lg"
           layout
           transition={{ type: "spring", damping: 30, stiffness: 400 }}
         >
-          Make your expenses{" "}
+          Make your expenses{"  "}
         </motion.span>
         <TextRotate
           texts={dashboardGreetingWords}
-          mainClassName="text-white px-2 sm:px-2 md:px-3 bg-[#ff5941] dark:bg-[#ff4d94] overflow-hidden py-0.5 sm:py-1 md:py-0 justify-center rounded-sm"
+          mainClassName="text-white sm:text-lg px-2 sm:px-2 md:px-3 bg-gradient-to-r from-cyan-400 to-blue-500 overflow-hidden py-0.5 sm:py-1 md:py-0 justify-center rounded-sm"
           staggerFrom={"last"}
           initial={{ y: "100%" }}
           animate={{ y: 0 }}
