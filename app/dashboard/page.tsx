@@ -1,4 +1,5 @@
 import Greeting from "@/components/dashboard/greeting";
+import Overview from "@/components/dashboard/overview";
 import Sidebar from "@/components/dashboard/sidebar";
 import prisma from "@/lib/prisma";
 import { currentUser } from "@clerk/nextjs/server";
@@ -44,6 +45,10 @@ export default async function Dashboard() {
 
       <div className="grid grid-cols-12 gap-6 p-6">
         <Sidebar />
+
+        <div className="col-span-12 md:col-span-9 lg:col-span-7">
+          <Overview />
+        </div>
       </div>
     </div>
   );
