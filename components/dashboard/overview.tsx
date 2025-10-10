@@ -14,6 +14,7 @@ import MetricCard from "./metric-card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import PerformanceChart from "./performance-chart";
 import InvestmentItem from "./investment-item";
+import LastActivities from "./last-activities";
 
 export default function Overview() {
   return (
@@ -161,6 +162,8 @@ export default function Overview() {
                 </div>
               </TabsContent>
             </Tabs>
+
+            <LastActivities />
           </div>
         </CardContent>
       </Card>
