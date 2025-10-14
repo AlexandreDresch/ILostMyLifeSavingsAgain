@@ -1,6 +1,10 @@
+import Controls from "@/components/dashboard/controls";
 import Greeting from "@/components/dashboard/greeting";
+import IncomeAllocation from "@/components/dashboard/income-allocation";
 import Overview from "@/components/dashboard/overview";
+import QuickActions from "@/components/dashboard/quick-actions";
 import Sidebar from "@/components/dashboard/sidebar";
+import Timer from "@/components/dashboard/timer";
 import prisma from "@/lib/prisma";
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
@@ -48,6 +52,18 @@ export default async function Dashboard() {
 
         <div className="col-span-12 md:col-span-9 lg:col-span-7">
           <Overview />
+        </div>
+
+        <div className="col-span-12 lg:col-span-3">
+          <div className="grid gap-6">
+            <Timer />
+
+            <QuickActions />
+
+            <IncomeAllocation />
+
+            <Controls />
+          </div>
         </div>
       </div>
     </div>
