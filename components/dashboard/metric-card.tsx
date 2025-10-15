@@ -1,4 +1,9 @@
-import { BarChart3, LineChart, LucideIcon } from "lucide-react";
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
+import { gsap } from "gsap";
+import { type LucideIcon, BarChart3, LineChart } from "lucide-react";
 
 export default function MetricCard({
   title,
@@ -15,6 +20,39 @@ export default function MetricCard({
   color: string;
   detail: string;
 }) {
+  const valueRef = useRef<HTMLDivElement>(null);
+  const glowRef = useRef<HTMLDivElement>(null);
+  const [displayValue, setDisplayValue] = useState(0);
+
+  const formatMoney = (num: number) => {
+    return new Intl.NumberFormat("en-US").format(Math.floor(num));
+  };
+
+  useEffect(() => {
+    gsap.to(
+      { val: 0 },
+      {
+        val: value,
+        duration: 2,
+        ease: "power2.out",
+        onUpdate: function () {
+          setDisplayValue(this.targets()[0].val);
+        },
+      }
+    );
+
+    if (glowRef.current) {
+      gsap.to(glowRef.current, {
+        opacity: 0.3,
+        scale: 1.2,
+        duration: 2,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+    }
+  }, [value]);
+
   const getColor = () => {
     switch (color) {
       case "cyan":
@@ -43,22 +81,56 @@ export default function MetricCard({
     }
   };
 
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        type: "spring" as const,
+        stiffness: 100,
+        damping: 15,
+      },
+    },
+  } as const;
+
   return (
-    <div
+    <motion.div
+      variants={cardVariants}
+      initial="hidden"
+      animate="visible"
+      whileHover={{ scale: 1.02 }}
       className={`bg-slate-800/50 rounded-lg border ${getColor()} p-4 relative overflow-hidden`}
     >
       <div className="flex items-center justify-between mb-2">
         <div className="text-sm text-slate-400">{title}</div>
-        <Icon className={`h-5 w-5 text-${color}-500`} />
+        <motion.div
+          initial={{ rotate: 0, scale: 1 }}
+          animate={{ rotate: [0, 5, -5, 0], scale: [1, 1.1, 1] }}
+          transition={{
+            duration: 2,
+            repeat: Number.POSITIVE_INFINITY,
+            repeatDelay: 3,
+          }}
+        >
+          <Icon className={`h-5 w-5 text-${color}-500`} />
+        </motion.div>
       </div>
-      <div className="text-2xl font-bold mb-1 bg-gradient-to-r bg-clip-text text-transparent from-slate-100 to-slate-300">
-        $ {value}
+      <div
+        ref={valueRef}
+        className="text-2xl font-bold mb-1 bg-gradient-to-r bg-clip-text text-transparent from-slate-100 to-slate-300"
+      >
+        $ {formatMoney(displayValue)}
       </div>
       <div className="text-xs text-slate-500">{detail}</div>
       <div className="absolute bottom-2 right-2 flex items-center">
         {getTrendIcon()}
       </div>
-      <div className="absolute -bottom-6 -right-6 h-16 w-16 rounded-full bg-gradient-to-r opacity-20 blur-xl from-cyan-500 to-blue-500"></div>
-    </div>
+      <div
+        ref={glowRef}
+        className="absolute -bottom-6 -right-6 h-16 w-16 rounded-full bg-gradient-to-r opacity-20 blur-xl from-cyan-500 to-blue-500"
+      />
+    </motion.div>
   );
 }
