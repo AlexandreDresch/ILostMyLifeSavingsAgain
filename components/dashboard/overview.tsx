@@ -75,7 +75,7 @@ export default function Overview() {
           </div>
 
           <div className="mt-8">
-            <Tabs defaultValue="performance" className="w-full">
+            <Tabs defaultValue="chart" className="w-full">
               <div className="flex items-center justify-between mb-4">
                 <TabsList className="bg-slate-800/50 p-1">
                   <TabsTrigger
