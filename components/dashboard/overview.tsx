@@ -17,6 +17,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import PerformanceChart from "./performance-chart";
 import InvestmentItem from "./investment-item";
 import LastActivities from "./last-activities";
+import { sampleFinancialData } from "@/constants";
 
 export default function Overview() {
   return (
@@ -115,9 +116,9 @@ export default function Overview() {
               </div>
 
               <TabsContent value="chart" className="mt-0">
-                <div className="h-64 w-full relative bg-slate-800/30 rounded-lg border border-slate-700/50 overflow-hidden">
-                  <PerformanceChart />
-                  <div className="absolute bottom-4 right-4 bg-slate-900/80 backdrop-blur-sm rounded-md px-3 py-2 border border-slate-700/50">
+                <div className="h-fit w-full relative bg-slate-800/30 rounded-lg border border-slate-700/50 overflow-hidden">
+                  <PerformanceChart data={sampleFinancialData} />
+                  <div className="absolute top-4 right-4 bg-slate-900/80 backdrop-blur-sm rounded-md px-3 py-2 border border-slate-700/50">
                     <div className="text-xs text-slate-400 mb-1">Summary</div>
                     <div className="text-lg font-mono text-cyan-400 flex">
                       <span className="ml-2">{10}%</span>
