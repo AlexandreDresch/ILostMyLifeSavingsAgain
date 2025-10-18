@@ -135,7 +135,7 @@ export default function PerformanceChart({
   }, [data]);
 
   return (
-    <Card className="bg-card">
+    <Card className="bg-card border-none">
       <CardContent className="space-y-6">
         <div className="h-80">
           {chartData.length > 0 ? (

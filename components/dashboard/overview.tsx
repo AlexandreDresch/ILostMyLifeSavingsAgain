@@ -81,19 +81,19 @@ export default function Overview() {
                 <TabsList className="bg-slate-800/50 p-1">
                   <TabsTrigger
                     value="chart"
-                    className="data-[state=active]:bg-slate-700 data-[state=active]:text-cyan-400"
+                    className="data-[state=active]:!bg-slate-700 data-[state=active]:!text-cyan-400 data-[state=active]:!border-transparent"
                   >
                     Chart View
                   </TabsTrigger>
                   <TabsTrigger
                     value="list"
-                    className="data-[state=active]:bg-slate-700 data-[state=active]:text-cyan-400"
+                    className="data-[state=active]:!bg-slate-700 data-[state=active]:!text-cyan-400 data-[state=active]:!border-transparent"
                   >
                     List View
                   </TabsTrigger>
                   <TabsTrigger
                     value="investment"
-                    className="data-[state=active]:bg-slate-700 data-[state=active]:text-cyan-400"
+                    className="data-[state=active]:!bg-slate-700 data-[state=active]:!text-cyan-400 data-[state=active]:!border-transparent"
                   >
                     Investments
                   </TabsTrigger>
