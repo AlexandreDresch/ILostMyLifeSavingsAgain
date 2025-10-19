@@ -5,7 +5,6 @@ import {
   ArrowBigUpDash,
   BanknoteArrowDown,
   BanknoteArrowUp,
-  List,
   RefreshCw,
   Wallet,
 } from "lucide-react";
@@ -17,7 +16,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import PerformanceChart from "./performance-chart";
 import InvestmentItem from "./investment-item";
 import LastActivities from "./last-activities";
-import { sampleFinancialData } from "@/constants";
+import { sampleFinancialData, sampleFinancialDataTable } from "@/constants";
+import FinancialTable from "./financial-table";
 
 export default function Overview() {
   return (
@@ -130,7 +130,14 @@ export default function Overview() {
 
               <TabsContent value="list" className="mt-0">
                 <div className="bg-slate-800/30 rounded-lg border border-slate-700/50 overflow-hidden">
-                  <List />
+                  <FinancialTable
+                    data={sampleFinancialDataTable}
+                    pageSize={10}
+                    searchable={true}
+                    sortable={true}
+                    filterable={true}
+                    groupable={true}
+                  />
                 </div>
               </TabsContent>
 
