@@ -54,6 +54,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
+import { cn } from "@/lib/utils";
 
 type DataType =
   | "string"
@@ -603,7 +604,7 @@ export default function FinancialTable({
   }, [sortedAndGroupedData, currentPageSize, currentPage]);
 
   return (
-    <div className="w-full space-y-4 relative">
+    <div className="w-full space-y-4 relative ">
       {searchable && (
         <div className="relative">
           <Search className="absolute left-2.5 top-5 h-4 w-4 text-muted-foreground" />
@@ -624,7 +625,7 @@ export default function FinancialTable({
                   <Group className="h-3 w-3" />
                   Grouped by: {groupByField}
                   <X
-                    className="h-3 w-3 cursor-pointer"
+                    className="size-3 text-red-400 cursor-pointer pointer-events-auto!"
                     onClick={() => setGroupByField(null)}
                   />
                 </Badge>
@@ -634,7 +635,7 @@ export default function FinancialTable({
                   <Search className="size-3" />
                   Search: {searchQuery}
                   <X
-                    className="h-3 w-3 cursor-pointer z-50"
+                    className="size-3 cursor-pointer text-red-400 pointer-events-auto!"
                     onClick={() => setSearchQuery("")}
                   />
                 </Badge>
@@ -642,13 +643,13 @@ export default function FinancialTable({
               {appliedTags.map((tag, index) => (
                 <Badge
                   key={index}
-                  variant="outline"
-                  className="flex items-center gap-1 border border-slate-700/50"
+                  variant="default"
+                  className="flex items-center gap-1"
                 >
-                  <Filter className="h-3 w-3" />
+                  <Filter className="size-3" />
                   {tag}
                   <X
-                    className="h-3 w-3 cursor-pointer"
+                    className="h-3 w-3 cursor-pointer text-red-400 pointer-events-auto!"
                     onClick={() => removeFilter(index)}
                   />
                 </Badge>
@@ -661,7 +662,7 @@ export default function FinancialTable({
         <Button
           variant="ghost"
           size="sm"
-          className="mt-2 absolute right-0 top-[54px]"
+          className="mt-2 absolute right-0 top-[54px] cursor-pointer text-xs bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-pink-500"
           onClick={() => {
             setFilterState({ logicOperator: "AND", rules: [] });
             setActiveFilters({ logicOperator: "AND", rules: [] });
@@ -678,12 +679,16 @@ export default function FinancialTable({
         {filterable && (
           <Dialog>
             <DialogTrigger asChild>
-              <Button variant="outline" size="sm">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="hover:!bg-slate-700 hover:!text-cyan-400 cursor-pointer ml-2"
+              >
                 <Filter className="h-4 w-4 mr-2" />
                 Filters
               </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[600px] bg-slate-900/80 backdrop-blur-sm border border-slate-700/50">
+            <DialogContent className="sm:max-w-[600px] bg-slate-900/70 backdrop-blur-sm border border-slate-700/50">
               <DialogHeader>
                 <DialogTitle>Advanced Filters</DialogTitle>
               </DialogHeader>
@@ -691,11 +696,11 @@ export default function FinancialTable({
               <div className="py-4 space-y-4">
                 <div className="flex gap-2">
                   <Button
-                    variant={
-                      filterState.logicOperator === "AND"
-                        ? "default"
-                        : "outline"
-                    }
+                    variant="default"
+                    className={cn(
+                      "cursor-pointer",
+                      filterState.logicOperator === "AND" && "text-cyan-400"
+                    )}
                     size="sm"
                     onClick={() =>
                       setFilterState({ ...filterState, logicOperator: "AND" })
@@ -704,9 +709,11 @@ export default function FinancialTable({
                     AND
                   </Button>
                   <Button
-                    variant={
-                      filterState.logicOperator === "OR" ? "default" : "outline"
-                    }
+                    variant="default"
+                    className={cn(
+                      "cursor-pointer",
+                      filterState.logicOperator === "OR" && "text-cyan-400"
+                    )}
                     size="sm"
                     onClick={() =>
                       setFilterState({ ...filterState, logicOperator: "OR" })
@@ -716,8 +723,8 @@ export default function FinancialTable({
                   </Button>
 
                   <div className="ml-auto">
-                    <Button variant="outline" size="sm" onClick={addFilterRule}>
-                      <Plus className="h-4 w-4 mr-1" /> Add Rule
+                    <Button variant="default" size="sm" onClick={addFilterRule} className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 to-blue-500">
+                      <Plus className="size-4 mr-1 text-cyan-500" /> Add Rule
                     </Button>
                   </div>
                 </div>
@@ -732,17 +739,16 @@ export default function FinancialTable({
 
                     return (
                       <div key={index} className="flex items-center gap-2">
-                        {/* Field selector */}
                         <Select
                           value={rule.field}
                           onValueChange={(value) =>
                             updateFilterRule(index, "field", value)
                           }
                         >
-                          <SelectTrigger className="w-[180px]">
+                          <SelectTrigger className="w-[180px] border-slate-700/50">
                             <SelectValue placeholder="Select field" />
                           </SelectTrigger>
-                          <SelectContent>
+                          <SelectContent className="bg-slate-900/70 backdrop-blur-sm border border-slate-700/50">
                             {autoDetectedColumns.map((column) => (
                               <SelectItem key={column.key} value={column.key}>
                                 {column.label}
@@ -751,17 +757,16 @@ export default function FinancialTable({
                           </SelectContent>
                         </Select>
 
-                        {/* Operator selector */}
                         <Select
                           value={rule.operator}
                           onValueChange={(value) =>
                             updateFilterRule(index, "operator", value)
                           }
                         >
-                          <SelectTrigger className="w-[150px]">
+                          <SelectTrigger className="w-[150px] border-slate-700/50">
                             <SelectValue placeholder="Operator" />
                           </SelectTrigger>
-                          <SelectContent>
+                          <SelectContent className="bg-slate-900/70 backdrop-blur-sm border border-slate-700/50">
                             {operators.map((op) => (
                               <SelectItem key={op.value} value={op.value}>
                                 {op.label}
@@ -770,17 +775,15 @@ export default function FinancialTable({
                           </SelectContent>
                         </Select>
 
-                        {/* Value input */}
                         <Input
                           value={rule.value}
                           onChange={(e) =>
                             updateFilterRule(index, "value", e.target.value)
                           }
-                          className="flex-1"
+                          className="flex-1 bg-slate-900/70  border border-slate-700/50 text-slate-400"
                           placeholder="Value"
                         />
 
-                        {/* Button to remove rule */}
                         <Button
                           variant="ghost"
                           size="icon"
@@ -790,14 +793,14 @@ export default function FinancialTable({
                             setFilterState({ ...filterState, rules: newRules });
                           }}
                         >
-                          <X className="h-4 w-4" />
+                          <X className="size-4 text-red-400" />
                         </Button>
                       </div>
                     );
                   })}
 
                   {filterState.rules.length === 0 && (
-                    <div className="text-center text-muted-foreground py-4">
+                    <div className="text-center text-gray-400 py-4 text-sm">
                       No filter rules. Click &quot;Add Rule&quot; to add one.
                     </div>
                   )}
@@ -806,7 +809,8 @@ export default function FinancialTable({
 
               <DialogFooter>
                 <Button
-                  variant="outline"
+                  variant="default"
+                  className="bg-clip-text text-transparent bg-gradient-to-r from-red-300 to-red-400"
                   onClick={() => {
                     setFilterState({ logicOperator: "AND", rules: [] });
                     setActiveFilters({ logicOperator: "AND", rules: [] });
@@ -867,7 +871,7 @@ export default function FinancialTable({
         )}
       </div>
 
-      <div className="rounded-md border">
+      <div className="rounded-md border border-slate-700/50">
         <Table>
           <TableHeader>
             <TableRow>
@@ -894,7 +898,7 @@ export default function FinancialTable({
                         <ChevronDown className="h-4 w-4" />
                       ))}
                     {groupByField === column.key && (
-                      <Badge variant="outline" className="ml-2 h-5 px-1.5">
+                      <Badge variant="default" className="ml-2 h-5 px-1.5 bg-slate-600">
                         Grouped
                       </Badge>
                     )}
