@@ -607,7 +607,7 @@ export default function FinancialTable({
     <div className="w-full space-y-4 relative ">
       {searchable && (
         <div className="relative">
-          <Search className="absolute left-2.5 top-5 h-4 w-4 text-muted-foreground" />
+          <Search className="absolute left-2.5 top-5 size-4 text-muted-foreground" />
           <div className="flex items-center flex-wrap gap-2 pl-8 pr-3 py-2 bg-background border border-slate-700/50 rounded-md">
             <Input
               type="search"
@@ -684,7 +684,7 @@ export default function FinancialTable({
                 size="sm"
                 className="hover:!bg-slate-700 hover:!text-cyan-400 cursor-pointer ml-2"
               >
-                <Filter className="h-4 w-4 mr-2" />
+                <Filter className="size-4 mr-2" />
                 Filters
               </Button>
             </DialogTrigger>
@@ -723,7 +723,12 @@ export default function FinancialTable({
                   </Button>
 
                   <div className="ml-auto">
-                    <Button variant="default" size="sm" onClick={addFilterRule} className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 to-blue-500">
+                    <Button
+                      variant="default"
+                      size="sm"
+                      onClick={addFilterRule}
+                      className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 to-blue-500"
+                    >
                       <Plus className="size-4 mr-1 text-cyan-500" /> Add Rule
                     </Button>
                   </div>
@@ -828,12 +833,19 @@ export default function FinancialTable({
         {groupable && (
           <Popover>
             <PopoverTrigger asChild>
-              <Button variant="outline" size="sm">
-                <Group className="h-4 w-4 mr-2" />
+              <Button
+                variant="default"
+                size="sm"
+                className="hover:!bg-slate-700 hover:!text-cyan-400 cursor-pointer"
+              >
+                <Group className="size-4 mr-2" />
                 Group by
               </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-[200px] p-0" align="start">
+            <PopoverContent
+              className="w-[200px] p-0 bg-slate-900/70 backdrop-blur-sm border border-slate-700/50"
+              align="start"
+            >
               <div className="p-2">
                 <div className="space-y-2">
                   {autoDetectedColumns.map((column) => (
@@ -843,7 +855,7 @@ export default function FinancialTable({
                         groupByField === column.key ? "default" : "ghost"
                       }
                       size="sm"
-                      className="w-full justify-start"
+                      className="w-full justify-start cursor-pointer hover:!text-cyan-400 transition-colors"
                       onClick={() =>
                         setGroupByField(
                           groupByField === column.key ? null : column.key
@@ -893,12 +905,15 @@ export default function FinancialTable({
                       column.sortable &&
                       sortConfig?.key === column.key &&
                       (sortConfig.direction === "asc" ? (
-                        <ChevronUp className="h-4 w-4" />
+                        <ChevronUp className="size-4 text-cyan-400" />
                       ) : (
-                        <ChevronDown className="h-4 w-4" />
+                        <ChevronDown className="size-4 text-cyan-400" />
                       ))}
                     {groupByField === column.key && (
-                      <Badge variant="default" className="ml-2 h-5 px-1.5 bg-slate-600">
+                      <Badge
+                        variant="default"
+                        className="ml-2 h-5 px-1.5 bg-slate-600"
+                      >
                         Grouped
                       </Badge>
                     )}
@@ -916,10 +931,10 @@ export default function FinancialTable({
                 >
                   <div className="flex flex-col items-center gap-2">
                     <DollarSign className="h-8 w-8 text-muted-foreground" />
-                    <p className="text-muted-foreground">
+                    <p className="text-sm text-gray-400">
                       No transactions found
                     </p>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-sm text-gray-400">
                       Try adjusting your search or filters
                     </p>
                   </div>
@@ -929,7 +944,10 @@ export default function FinancialTable({
               paginatedData.map((row, rowIndex) =>
                 row.__isGroupRow ? (
                   <TableRow key={`group-${rowIndex}`} className="bg-muted">
-                    <TableCell colSpan={autoDetectedColumns.length}>
+                    <TableCell
+                      colSpan={autoDetectedColumns.length}
+                      className="border border-x-0 border-slate-700/50"
+                    >
                       <Collapsible
                         open={expandedGroups.includes(row.__groupKey)}
                         onOpenChange={(isOpen) => {
@@ -942,7 +960,7 @@ export default function FinancialTable({
                       >
                         <CollapsibleTrigger className="flex items-center w-full">
                           <ChevronRight
-                            className={`h-4 w-4 mr-2 transition-transform ${
+                            className={`size-4 mr-2 transition-transform ${
                               expandedGroups.includes(row.__groupKey)
                                 ? "transform rotate-90"
                                 : ""
@@ -969,6 +987,7 @@ export default function FinancialTable({
                                           detectDataType(item[column.key]);
                                         return (
                                           <TableCell
+                                            className="border border-x-0 border-slate-700/50"
                                             key={`${rowIndex}-${itemIndex}-${column.key}`}
                                           >
                                             {renderCellValue(
@@ -996,7 +1015,10 @@ export default function FinancialTable({
                       const type =
                         column.type || detectDataType(row[column.key]);
                       return (
-                        <TableCell key={`${rowIndex}-${column.key}`}>
+                        <TableCell
+                          key={`${rowIndex}-${column.key}`}
+                          className="border border-x-0 border-slate-700/50"
+                        >
                           {renderCellValue(row, column.key, type, column)}
                         </TableCell>
                       );
@@ -1010,8 +1032,8 @@ export default function FinancialTable({
       </div>
 
       {totalPages > 1 && (
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2">
+        <div className="flex items-center justify-between p-2">
+          <div className="flex items-center space-x-2 ">
             <span className="text-sm text-muted-foreground">Show</span>
             <Select
               value={currentPageSize.toString()}
@@ -1021,10 +1043,10 @@ export default function FinancialTable({
                 setCurrentPage(1);
               }}
             >
-              <SelectTrigger className="w-[70px]">
+              <SelectTrigger className="w-[70px] border-slate-700/50">
                 <SelectValue placeholder={currentPageSize} />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="bg-slate-900/70 backdrop-blur-sm border border-slate-700/50">
                 {pageSizeOptions.map((size) => (
                   <SelectItem key={size} value={size.toString()}>
                     {size}
@@ -1048,16 +1070,18 @@ export default function FinancialTable({
               size="icon"
               onClick={() => handlePageChange(1)}
               disabled={currentPage === 1}
+              className="border-slate-700/50! cursor-pointer"
             >
-              <ChevronsLeft className="h-4 w-4" />
+              <ChevronsLeft className="size-4" />
             </Button>
             <Button
               variant="outline"
               size="icon"
               onClick={() => handlePageChange(currentPage - 1)}
               disabled={currentPage === 1}
+              className="border-slate-700/50! cursor-pointer"
             >
-              <ChevronLeft className="h-4 w-4" />
+              <ChevronLeft className="size-4" />
             </Button>
 
             <Select
@@ -1066,10 +1090,10 @@ export default function FinancialTable({
                 handlePageChange(Number.parseInt(value))
               }
             >
-              <SelectTrigger className="w-16">
+              <SelectTrigger className="w-16 border-slate-700/50! cursor-pointer">
                 <SelectValue placeholder={currentPage} />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="bg-slate-900/70 backdrop-blur-sm border border-slate-700/50">
                 {Array.from({ length: totalPages }, (_, i) => (
                   <SelectItem key={i + 1} value={(i + 1).toString()}>
                     {i + 1}
@@ -1087,16 +1111,18 @@ export default function FinancialTable({
               size="icon"
               onClick={() => handlePageChange(currentPage + 1)}
               disabled={currentPage === totalPages}
+              className="border-slate-700/50! cursor-pointer"
             >
-              <ChevronRight className="h-4 w-4" />
+              <ChevronRight className="size-4" />
             </Button>
             <Button
               variant="outline"
               size="icon"
               onClick={() => handlePageChange(totalPages)}
               disabled={currentPage === totalPages}
+              className="border-slate-700/50! cursor-pointer"
             >
-              <ChevronsRight className="h-4 w-4" />
+              <ChevronsRight className="size-4" />
             </Button>
           </div>
         </div>
