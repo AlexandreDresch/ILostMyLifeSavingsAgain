@@ -544,9 +544,14 @@ export default function FinancialTable({
         return (
           <div className="flex flex-wrap gap-1">
             {value.slice(0, 3).map((item, i) => (
-              <Badge key={i} variant="outline" className="text-xs">
-                {String(item)}
-              </Badge>
+              <div
+                key={i}
+                className="p-[1px] bg-gradient-to-r from-cyan-400 to-blue-400 rounded-md"
+              >
+                <Badge variant="default" className="text-xs bg-slate-900/90">
+                  {String(item)}
+                </Badge>
+              </div>
             ))}
             {value.length > 3 && (
               <Badge variant="outline" className="text-xs">
@@ -604,7 +609,7 @@ export default function FinancialTable({
   }, [sortedAndGroupedData, currentPageSize, currentPage]);
 
   return (
-    <div className="w-full space-y-4 relative ">
+    <div className="w-full space-y-4 relative">
       {searchable && (
         <div className="relative">
           <Search className="absolute left-2.5 top-5 size-4 text-muted-foreground" />
