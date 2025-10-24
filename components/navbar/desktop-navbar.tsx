@@ -7,9 +7,9 @@ import { UserButton } from "@clerk/nextjs";
 
 export default function DesktopNavbar() {
   return (
-    <header className="hidden border-separate border-b border-slate-700/50 bg-background md:block">
+    <header className="hidden border-separate border-b border-slate-700/50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 md:block sticky top-0 z-50">
       <nav className=" flex items-center justify-between px-8 w-full">
-        <div className="flex h-[80px] min-h-[80px] items-center gap-x-4">
+        <div className="flex h-[70px] min-h-[70px] items-center gap-x-4">
           <Logo className="size-16" />
 
           <div className="flex h-full">
