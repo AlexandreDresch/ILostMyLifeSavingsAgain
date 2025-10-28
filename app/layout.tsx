@@ -31,6 +31,15 @@ export default function RootLayout({
       <html lang="en" className="dark" style={{ colorScheme: "dark" }}>
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          style={{
+            background: `linear-gradient(135deg, 
+            hsl(var(--background) / 0.6) 0%,
+            hsl(var(--background) / 0.3) 20%,
+            hsl(var(--background) / 0.1) 40%,
+            transparent 60%
+          ), 
+          hsl(var(--background))`,
+          }}
         >
           <Toaster richColors position="bottom-right" />
           <RootProviders>{children}</RootProviders>

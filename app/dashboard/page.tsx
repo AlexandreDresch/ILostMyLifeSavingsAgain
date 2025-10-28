@@ -28,7 +28,7 @@ export default async function Dashboard() {
   }
 
   return (
-    <div className="w-full bg-background">
+    <div className="w-full">
       <div className="border-b border-slate-700/50 flex items-center justify-center">
         <div className="w-full flex items-center justify-between gap-6 py-8 px-6">
           <p className="text-lg sm:text-xl font-bold">
