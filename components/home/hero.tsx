@@ -7,6 +7,7 @@ import Image from "next/image";
 import ShinyButton from "./shiny-button";
 import gsap from "gsap";
 import { Mouse } from "lucide-react";
+import Link from "next/link";
 
 interface HeroSectionProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
@@ -79,7 +80,7 @@ export default function Hero({
     const scale = 1.05;
     const blur = 0.5;
 
-    const tiltY = ((xPos - centerX) / centerX) * -10; 
+    const tiltY = ((xPos - centerX) / centerX) * -10;
     const tiltX = ((yPos - centerY) / centerY) * 5;
 
     const innerImage = element.querySelector(
@@ -206,9 +207,11 @@ export default function Hero({
               {subtitle}
             </motion.p>
 
-            <motion.div variants={itemVariants}>
-              <ShinyButton>{callToAction.text}</ShinyButton>
-            </motion.div>
+            <Link href={callToAction.href}>
+              <motion.div variants={itemVariants}>
+                <ShinyButton>{callToAction.text}</ShinyButton>
+              </motion.div>
+            </Link>
           </motion.main>
         </div>
 
