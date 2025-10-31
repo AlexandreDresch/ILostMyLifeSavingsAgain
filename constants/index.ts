@@ -530,3 +530,62 @@ export const sampleFinancialDataTable = [
     tags: ["Dividends", "Passive Income"],
   },
 ];
+
+export const features = [
+  {
+    title: "Real-Time Tracking",
+    description:
+      "See every dollar move instantly — no surprises, just control. (Or watch your balance tank live, anon.)\n\n" +
+      "Track transactions as they happen with zero lag. Whether it's a coffee run or a crypto dip-buy, you'll know the exact impact on your net worth in real time. Perfect for anons who live on the edge and need to see the Ls (or Ws) roll in live.",
+    primaryImageSrc: "/images/real-time-tracking-primary.jpg",
+    secondaryImageSrc: "/images/real-time-tracking-bg.jpg",
+  },
+  {
+    title: "Income & Expense Dashboard",
+    description:
+      "Visualize all inflows and outflows in one clear dashboard — know exactly where your money goes. (Tendies in, ramen out — cope in real time.)\n\n" +
+      "A full-spectrum view of your financial life: salary deposits, side-hustle gains, subscription leaks, and every Uber Eats regret. Interactive charts break it down by category, merchant, or mood — because sometimes you're just stress-spending on energy drinks at 2 AM.",
+    primaryImageSrc: "/images/dashboard-primary.jpg",
+    secondaryImageSrc: "/images/dashboard-bg.jpg",
+  },
+  {
+    title: "Smart Budgeting",
+    description:
+      "Set limits that actually work — with AI tips to stop impulse buys. (NGMI if you ignore them.)\n\n" +
+      "Create custom budgets per category (or per coping mechanism). The AI watches your patterns like a hawk and drops truth bombs before you buy that $400 mechanical keyboard 'for productivity.' It even suggests cheaper dopamine hits — like instant ramen instead of DoorDash.",
+    primaryImageSrc: "/images/budgeting-primary.jpg",
+    secondaryImageSrc: "/images/budgeting-bg.jpg",
+  },
+  {
+    title: "Investment Dashboard",
+    description:
+      "All your stocks, crypto, and ETFs in one clean view. (One place to watch your bags bleed in sync.)\n\n" +
+      "Connect your brokerage, wallet, or exchange — see your entire portfolio in one unified dashboard. Real-time P&L, allocation breakdowns, and a 'Regret Index' that spikes every time you check during a dip. Bonus: dark mode so your red candles don’t blind you at 3 AM.",
+    primaryImageSrc: "/images/investment-primary.jpg",
+    secondaryImageSrc: "/images/investment-bg.jpg",
+  },
+  {
+    title: "Export to CSV",
+    description:
+      "Download all your data in CSV format — open in Excel, Google Sheets, or your autism-powered spreadsheet.\n\n" +
+      "Full data sovereignty. Export transactions, budgets, investment history, or AI insights with one click. Includes metadata like merchant tags, mood ratings, and 'YOLO score.' Feed it into your custom Notion dashboard, Python script, or 47-tab Google Sheet masterpiece.",
+    primaryImageSrc: "/images/export-primary.jpg",
+    secondaryImageSrc: "/images/export-bg.jpg",
+  },
+  {
+    title: "Spending Alerts",
+    description:
+      "Gentle nudges before you overspend. (Or loud pings when you're about to YOLO rent.)\n\n" +
+      "Custom alerts via push, email, or carrier pigeon. Set thresholds like 'ping me if I spend >$50 on takeout in 24h' or 'scream if I try to buy another NFT.' Includes pre-spend intervention: 'Are you sure you need this limited-edition cat hoodie?'",
+    primaryImageSrc: "/images/alerts-primary.jpg",
+    secondaryImageSrc: "/images/alerts-bg.jpg",
+  },
+  {
+    title: "Daily AI Insights",
+    description:
+      "Fresh money tips every morning — personalized, actionable, no spam. (Your daily cope/hope pill delivered at 8 AM.)\n\n" +
+      "Your AI financial therapist sends a daily briefing: 'You spent 23% of income on energy drinks — consider sleep.' Or 'Your crypto is down 12%, but your ramen budget is under by $7 — net cope achieved.' Includes one weird trick to save $3/week (compound interest not included).",
+    primaryImageSrc: "/images/ai-insights-primary.jpg",
+    secondaryImageSrc: "/images/ai-insights-bg.jpg",
+  },
+];
