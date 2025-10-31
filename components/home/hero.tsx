@@ -6,7 +6,6 @@ import { motion, type Variants } from "framer-motion";
 import Image from "next/image";
 import ShinyButton from "./shiny-button";
 import gsap from "gsap";
-import { Mouse } from "lucide-react";
 import Link from "next/link";
 
 interface HeroSectionProps
@@ -221,48 +220,21 @@ export default function Hero({
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.5, duration: 0.6, ease: "easeOut" }}
         >
-          <motion.div
-            className="relative flex items-center justify-center"
-            animate={{
-              y: [0, 6, 0],
-              scale: [1, 1.05, 1],
-            }}
-            transition={{
-              duration: 2.5,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          >
-            <div className="relative">
-              <Mouse className="w-6 h-6" />
-              <motion.div
-                className="absolute -bottom-1 left-1/2 w-1 h-1 bg-muted-foreground rounded-full"
-                animate={{
-                  y: [0, 4, 0],
-                  opacity: [1, 0, 1],
-                }}
-                transition={{
-                  duration: 1.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 0.3,
-                }}
-                style={{ x: "-50%" }}
-              />
-            </div>
-          </motion.div>
+  
 
-          <motion.div
-            className="flex flex-col items-center gap-1"
-            animate={{ opacity: [0.7, 1, 0.7] }}
+         <motion.div
+            className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/60 text-base flex items-center gap-2"
+            animate={{ opacity: [0.5, 1, 0.5] }}
             transition={{ duration: 2, repeat: Infinity }}
           >
-            <span className="text-xs font-medium tracking-widest uppercase">
-              Scroll
-            </span>
-            <span className="text-[10px] tracking-wider opacity-80">
-              to explore
-            </span>
+            <div className="w-2 h-4 border border-white/60 rounded-full relative">
+              <motion.div
+                className="w-1 h-1 bg-white/60 rounded-full absolute top-1 left-1/2 transform -translate-x-1/2"
+                animate={{ y: [0, 4, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+              />
+            </div>
+            Scroll to explore
           </motion.div>
         </motion.div>
       </div>

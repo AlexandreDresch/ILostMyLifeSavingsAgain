@@ -1,8 +1,9 @@
+import Features from "@/components/home/features";
 import Hero from "@/components/home/hero";
 
 export default function Home() {
   return (
-    <div className="w-full">
+    <div className="w-full flex flex-col">
       <Hero
         logo={{
           url: "/logo.png",
@@ -22,12 +23,11 @@ export default function Home() {
           href: "/login",
         }}
         backgroundImage="/hero-image.webp"
-        
       />
 
-      <div className="h-screen">
+      <Features />
 
-      </div>
+      <div className="h-screen"></div>
     </div>
   );
 }
