@@ -1,5 +1,7 @@
+import { FAQ } from "@/components/home/faq";
 import Features from "@/components/home/features";
 import Hero from "@/components/home/hero";
+import HowItWorks from "@/components/home/how-it-works";
 
 export default function Home() {
   return (
@@ -27,7 +29,9 @@ export default function Home() {
 
       <Features />
 
-      <div className="h-screen"></div>
+      <HowItWorks />
+
+      <FAQ />
     </div>
   );
 }

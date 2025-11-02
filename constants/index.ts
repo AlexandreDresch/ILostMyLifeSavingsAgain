@@ -589,3 +589,168 @@ export const features = [
     secondaryImageSrc: "/images/ai-insights-bg.jpg",
   },
 ];
+
+export const steps = [
+  {
+    step: "01",
+    title: "Create Account",
+    description:
+      "Sign up in seconds with just your email. No credit card required to get started.\n\n" +
+      "Just drop an email (or burner) and you’re in. No KYC nonsense or 'link your bank' traps — we keep it lean so you can start vibing with your finances ASAP.",
+  },
+  {
+    step: "02",
+    title: "Configure Workspace",
+    description:
+      "Pick your fiat poison (USD, EUR, or even moon money like BTC) and your language. Then go full gremlin: tweak dashboards, set budget categories for 'late-night ramen' vs. 'emergency coffee,' or tag your degen trades.",
+  },
+  {
+    step: "03",
+    title: "Boost Your Finances",
+    description:
+      "Watch your money moves like a hawk stalking a dip. Track every dollar, get AI-pilled insights that hit harder than a 4chan thread, and level up your financial game. (Pro tip: stop YOLOing on meme coins — or at least set alerts first.)",
+  },
+];
+
+export const faqCategories = [
+  {
+    category: "Getting Started",
+    faqs: [
+      {
+        question: "How quick can I jump in and start?",
+        answer:
+          "Faster than a rug pull in a shitcoin. Drop an email (burner’s fine, anon) and you’re live in under 60 seconds. No credit card, no KYC, just pure vibes to start tracking your bags.\n\n" +
+          "From signup to setting up your workspace — picking your currency (USD, BTC, or some obscure altcoin) and language (English, moon runes, or whatever) — you’re done in under 5 minutes. You’ll be flexing on bad financial decisions before your energy drink kicks in.",
+      },
+      {
+        question: "How do I set up my workspace for my degen needs?",
+        answer:
+          "Make it yours like a perfectly curated X timeline. Choose your fiat or crypto (USD, EUR, BTC, you name it) and language — no shade if it’s l33t or pirate-speak.\n\n" +
+          "Then go full gremlin: tweak dashboards, set budget categories like ‘late-night ramen’ or ‘emergency coffee,’ and tag your trades for max autism. It’s built to flex with your solo grind or your squad’s hustle. NGMI if it takes you longer than a meme coin pump to configure.",
+      },
+      {
+        question: "Do I need to be a tech wizard to get this running?",
+        answer:
+          "Nah, it’s easier than dodging a scam DM on X. If you can click a link without getting phished, you can handle this.\n\n" +
+          "The setup wizard guides you like a based anon holding your hand through a bear market. Pick your currency, language, and vibe — no coding or spreadsheets required (but we won’t stop you from going full autist with custom tags later).",
+      },
+      {
+        question: "Can I use this for my solo grind?",
+        answer:
+          "Hell yeah, it’s built for the lone-wolf anon. Track your bags like a degen trading from a basement setup.\n\n" +
+          "Set up your workspace to flex your personal hustle — from your ramen budget to your memecoin portfolio. Custom dashboards, budgets, and tags let you micromanage your finances like a true autist, no team required. WAGMI, solo style.",
+      },
+      {
+        question: "What if I mess up the setup?",
+        answer:
+          "You can’t NGMI this hard. The setup’s forgiving like a bull market pump — tweak your currency, language, or categories anytime.\n\n" +
+          "Made a mess? Reset your workspace or hit up support on X for a quick fix. We’ll have you back to tracking your tendies faster than you can say ‘to the moon.’",
+      },
+    ],
+  },
+  {
+    category: "Money Moves",
+    faqs: [
+      {
+        question: "Can this stop me from YOLOing my rent?",
+        answer:
+          "Bet. Our AI-powered spending alerts and budgeting tools are like a based anon yelling ‘don’t do it’ before you blow your stack.\n\n" +
+          "Set custom limits and get pings when you’re about to overspend on takeout or NFTs. Daily AI insights roast your $200 Uber Eats habit and suggest cheaper copes — like instant noodles. It’s not foolproof (NGMI if you ignore the vibes), but it’s your best shot at financial WAGMI.",
+      },
+      {
+        question: "How do I track my bags without doxxing myself?",
+        answer:
+          "We’re not here to expose you. No bank account linkage required — keep it as private as your seed phrase.\n\n" +
+          "Manually input transactions, import CSVs, or sync select exchanges for your degen crypto plays. Track your stocks, crypto, and ramen budget in one dashboard without giving up your soul. Built for anons who trust nobody, not even their own impulses.",
+      },
+      {
+        question: "Can I track both my crypto and fiat in one place?",
+        answer:
+          "Yup, it’s like a DEX and a bank statement had a baby. Track your BTC, ETH, or that sketchy meme coin alongside your USD or EUR.\n\n" +
+          "The dashboard merges it all into one clean view — no toggling between apps like a pleb. See your net worth in real-time, whether it’s mooning or dumping, without losing your mind.",
+      },
+      {
+        question: "Will it tell me when I’m spending like an idiot?",
+        answer:
+          "Oh, it’ll roast you harder than a 4chan thread. Spending alerts ping you before you drop $500 on ‘limited-edition’ JPEGs.\n\n" +
+          "Set thresholds like ‘warn me if I spend $50 on coffee in a week’ or ‘scream if I touch my rent money.’ The AI even throws in snarky tips like ‘maybe skip the third Monster Energy today’ to keep your wallet from bleeding out.",
+      },
+      {
+        question: "Can I budget for my side hustles separately?",
+        answer:
+          "For sure, anon. Slice your budget like a pro trader’s portfolio — separate your day job cash from your OnlyFans grind or NFT flips.\n\n" +
+          "Create custom categories for each hustle, track inflows/outflows, and get AI insights per stream. It’s like having a financial advisor who doesn’t care if your ‘side hustle’ is shilling meme coins on X.",
+      },
+    ],
+  },
+  {
+    category: "Trust & Tech",
+    faqs: [
+      {
+        question: "Is my data safe or am I gonna get rekt?",
+        answer:
+          "Safer than a cold wallet in a bunker. Bank-grade encryption keeps your data locked tighter than a hodler in a bear market.\n\n" +
+          "No sketchy trackers, no selling your spending habits to the highest bidder. Use a burner email and manual inputs if you’re extra paranoid. We’re built for anons who side-eye everything — even their own shadow.",
+      },
+      {
+        question: "Can I export my data for my 47-tab spreadsheet?",
+        answer:
+          "Hell yeah, you beautiful nerd. One-click CSV export for all your transactions, budgets, and AI insights.\n\n" +
+          "Feed it into Excel, Google Sheets, or your Notion shrine. Every data point — from coffee binges to crypto Ls — comes with tags like merchant or ‘YOLO score’ for peak spreadsheet autism. Go build your financial lore, anon.",
+      },
+      {
+        question: "What if I’m NGMI and need support?",
+        answer:
+          "We got you, anon. Hit us up on X or email — it’s like DMing a based friend who doesn’t ghost.\n\n" +
+          "Expect replies faster than a bull run pump. Whether you’re stuck on setup or need help not YOLOing your rent on meme coins, our team’s here to guide you to WAGMI status. No judgment, even if you bought that dog-themed token at the top.",
+      },
+      {
+        question: "What happens if your servers get rekt?",
+        answer:
+          "Our servers are sturdier than a diamond-handed HODLer. We’ve got redundant cloud backups and uptime that laughs at DDOS attacks.\n\n" +
+          "Even if the internet implodes, your data’s safe and accessible once we’re back. Worst case, you’ll be offline for less time than it takes to panic-sell during a dip. We built this for anons who expect the apocalypse.",
+      },
+      {
+        question: "Can I use this on my phone or is it desktop only?",
+        answer:
+          "It’s mobile-friendly like a degen’s trading app at 3 AM. Use it on iOS, Android, or any browser — no lag, no excuses.\n\n" +
+          "Track your bags, get alerts, or export CSVs from your phone while pretending to work. Dark mode included so you don’t burn your retinas checking your portfolio during a midnight crash.",
+      },
+    ],
+  },
+  {
+    category: "Power User Perks",
+    faqs: [
+      {
+        question: "What’s the deal with these AI insights?",
+        answer:
+          "Your daily dose of financial truth, served at 8 AM sharper than a market crash. Our AI scans your spending and investing patterns, then drops personalized tips that hit like a 4chan roast.\n\n" +
+          "Think: ‘Anon, you spent 23% of your income on Red Bull — try water.’ Or ‘Your BTC is down 12%, but you saved $7 on ramen — net cope secured.’ Actionable, no spam, just pure alpha to keep you from NGMI territory.",
+      },
+      {
+        question: "Can I track my whole portfolio without losing my mind?",
+        answer:
+          "Yup, one dashboard to rule them all. Stocks, crypto, ETFs, even your sketchy NFT bags — all in a clean view that won’t make you rage-quit.\n\n" +
+          "Sync your exchanges or input manually for max privacy. Get real-time P&L, allocation breakdowns, and a ‘Regret Index’ that spikes when you check during a dip. Dark mode included so your red candles don’t burn your eyes at 3 AM.",
+      },
+      {
+        question: "Can the AI help me make better trades?",
+        answer:
+          "It’s not a crystal ball, but it’s smarter than your average X shill. The AI crunches your trade history and market vibes to suggest moves that aren’t pure cope.\n\n" +
+          "Get tips like ‘Your altcoin bags are 80% down — maybe diversify?’ or ‘You’re heavy on tech stocks, anon, chill on the FOMO.’ It won’t make you a whale, but it’ll keep you from drowning in red candles.",
+      },
+      {
+        question: "Can I customize alerts to match my degen lifestyle?",
+        answer:
+          "Oh, you bet. Set alerts as unhinged as your trading strategy — like ‘ping me if I spend $100 on pizza in 48 hours’ or ‘scream if my portfolio drops 10%.’\n\n" +
+          "Choose push, email, or carrier pigeon vibes. The AI even learns your habits and suggests alerts, like ‘Anon, you’re about to buy another $200 skin — maybe don’t.’ Built for anons who live on the edge.",
+      },
+      {
+        question: "Does it work for my weird mix of assets?",
+        answer:
+          "Weirder the better. Track your blue-chip stocks, shitcoins, NFTs, and that one sketchy DeFi yield farm — all in one place.\n\n" +
+          "The dashboard handles everything from your grandma’s ETFs to your moonbag memecoins. Custom tags let you label stuff like ‘YOLO fund’ or ‘copium stash’ for max clarity. If your portfolio’s a mess, we’ll make it a beautiful mess.",
+      },
+    ],
+  },
+];
