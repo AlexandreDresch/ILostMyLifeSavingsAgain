@@ -173,7 +173,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
         transition={{ duration: 0.3, ease: "easeInOut" }}
         className="overflow-hidden px-4"
       >
-        <p className="text-muted-foreground">{answer}</p>
+        <p className="text-slate-300">{answer}</p>
       </motion.div>
     </motion.div>
   );
