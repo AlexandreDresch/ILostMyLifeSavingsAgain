@@ -1,3 +1,4 @@
+import Cta from "@/components/home/cta";
 import { FAQ } from "@/components/home/faq";
 import Features from "@/components/home/features";
 import Hero from "@/components/home/hero";
@@ -32,6 +33,8 @@ export default function Home() {
       <HowItWorks />
 
       <FAQ />
+
+      <Cta />
     </div>
   );
 }
