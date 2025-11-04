@@ -23,10 +23,12 @@ export default function Features() {
   const nextFeature = features[nextFeatureIndex];
 
   useEffect(() => {
-    if (!containerRef.current || !sectionRef.current) return;
+    if (!containerRef.current || !sectionRef.current || !progressRef.current)
+      return;
 
     const section = sectionRef.current;
     const container = containerRef.current;
+    const progressBar = progressRef.current;
 
     const totalScrollHeight = features.length * window.innerHeight;
 
@@ -45,20 +47,30 @@ export default function Features() {
         const featureIndex = Math.floor(self.progress * features.length);
         setActiveFeature(Math.min(featureIndex, features.length - 1));
       },
+      onEnter: () => {
+        gsap.to(progressBar, { opacity: 1, duration: 0.3 });
+      },
+      onLeave: () => {
+        gsap.to(progressBar, { opacity: 0, duration: 0.3 });
+      },
+      onEnterBack: () => {
+        gsap.to(progressBar, { opacity: 1, duration: 0.3 });
+      },
+      onLeaveBack: () => {
+        gsap.to(progressBar, { opacity: 0, duration: 0.3 });
+      },
     });
 
-    if (progressRef.current) {
-      gsap.to(progressRef.current, {
-        width: "100%",
-        ease: "none",
-        scrollTrigger: {
-          trigger: container,
-          start: "top top",
-          end: `bottom bottom`,
-          scrub: true,
-        },
-      });
-    }
+    gsap.to(progressBar, {
+      width: "100%",
+      ease: "none",
+      scrollTrigger: {
+        trigger: container,
+        start: "top top",
+        end: `bottom bottom`,
+        scrub: true,
+      },
+    });
 
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
@@ -153,9 +165,8 @@ export default function Features() {
         <section
           ref={sectionRef}
           className="relative h-screen w-full overflow-hidden flex items-center justify-center"
-          
         >
-          <div className="w-full px-6 md:px-10 relative z-10 mx-auto" >
+          <div className="w-full px-6 md:px-10 relative z-10 mx-auto">
             <motion.div
               className="grid grid-cols-1 lg:grid-cols-2 gap-4 w-full items-center"
               variants={containerVariants}
@@ -194,7 +205,7 @@ export default function Features() {
 
               <motion.div
                 ref={mockupRef}
-                className="relative w-full max-w-[300px] md:max-w-[471px] mx-auto "
+                className="relative w-full max-w-[300px] md:max-w-[471px] mx-auto"
               >
                 <motion.div
                   className="absolute w-[300px] h-[317px] md:w-[472px] md:h-[500px] bg-[#090909] rounded-sm z-0"
@@ -236,7 +247,7 @@ export default function Features() {
                 </motion.div>
 
                 <motion.div
-                  className="relative w-full h-[405px] md:h-[637px] bg-white/10 border border-white/20 rounded-sm backdrop-blur-lg  z-10 overflow-hidden"
+                  className="relative w-full h-[405px] md:h-[637px] bg-white/10 border border-white/20 rounded-sm backdrop-blur-lg z-10 overflow-hidden"
                   animate={{
                     y: [0, 10, 0],
                   }}
