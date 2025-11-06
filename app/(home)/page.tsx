@@ -1,3 +1,4 @@
+import { Footer } from "@/components/footer";
 import Cta from "@/components/home/cta";
 import { FAQ } from "@/components/home/faq";
 import Features from "@/components/home/features";
@@ -6,7 +7,7 @@ import HowItWorks from "@/components/home/how-it-works";
 
 export default function Home() {
   return (
-    <div className="w-full flex flex-col">
+    <div className="w-full flex flex-col relative">
       <Hero
         logo={{
           url: "/logo.png",
@@ -35,6 +36,8 @@ export default function Home() {
       <FAQ />
 
       <Cta />
+
+      <Footer />
     </div>
   );
 }
