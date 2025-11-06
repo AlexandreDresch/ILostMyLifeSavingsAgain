@@ -22,7 +22,7 @@ export default async function Wizard() {
   return (
     <div className="container flex max-w-2xl flex-col items-center justify-between gap-4 bg-pattern">
       <div>
-        <h1 className="text-2xl font-bold text-center">
+        <h1 className="text-2xl font-bold text-center ">
           Welcome to the Setup Wizard,
           {user.username ? (
             <span className="ml-2 font-bold">{user.firstName}!</span>
@@ -43,7 +43,7 @@ export default async function Wizard() {
 
       <Separator />
 
-      <Card className="w-full bg-background">
+      <Card className="w-full bg-background border-slate-700/50">
         <CardHeader>
           <CardTitle>Currency</CardTitle>
 
@@ -59,7 +59,7 @@ export default async function Wizard() {
 
       <Separator />
 
-      <Card className="w-full bg-background">
+      <Card className="w-full bg-background border-slate-700/50">
         <CardHeader>
           <CardTitle>Language</CardTitle>
 

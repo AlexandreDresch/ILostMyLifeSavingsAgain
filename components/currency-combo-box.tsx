@@ -126,7 +126,7 @@ export function CurrencyComboBox() {
               <Button
                 ref={triggerRef}
                 variant="outline"
-                className="w-full justify-start relative overflow-hidden group bg-transparent"
+                className="w-full justify-start relative overflow-hidden group bg-transparent !border-slate-700/50"
                 disabled={mutation.isPending}
               >
                 <motion.div
@@ -165,7 +165,7 @@ export function CurrencyComboBox() {
           </PopoverTrigger>
           <AnimatePresence>
             {open && (
-              <PopoverContent className="w-[200px] p-0" align="start" asChild>
+              <PopoverContent className="w-[200px] p-0 bg-slate-900/50 border-slate-700/50 backdrop-blur-sm" align="start" asChild>
                 <motion.div
                   ref={contentRef}
                   initial={{ opacity: 0, scale: 0.95, y: -10 }}

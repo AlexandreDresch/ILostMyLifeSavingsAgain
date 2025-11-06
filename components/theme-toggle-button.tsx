@@ -150,7 +150,6 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
   };
 
   if (!mounted) {
-    // Avoid hydration mismatch by not rendering toggle until after mount
     return <div className="w-16 h-8 rounded-full bg-zinc-200" />;
   }
 
@@ -169,11 +168,11 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
     >
       <div
         ref={backgroundRef}
-        className="absolute inset-0 rounded-full"
-        style={{
-          backgroundColor: isDark ? "#09090b" : "#ffffff",
-          border: `1px solid ${isDark ? "#27272a" : "#e4e4e7"}`,
-        }}
+        className={
+          cn("absolute inset-0 rounded-full",
+            isDark ? "bg-background border border-slate-400/30" : "bg-white border border-slate-200"
+          )
+        }
       />
 
       <div
