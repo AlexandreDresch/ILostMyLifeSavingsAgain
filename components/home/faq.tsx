@@ -133,7 +133,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
     <motion.div
       animate={isOpen ? "open" : "closed"}
       className={cn(
-        "border-b border-t border-slate-300 transition-colors",
+        "border-b border-t border-slate-300/30 transition-colors",
         isOpen ? "bg-muted/50" : "bg-card"
       )}
     >
