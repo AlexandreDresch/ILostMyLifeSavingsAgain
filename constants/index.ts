@@ -754,3 +754,58 @@ export const faqCategories = [
     ],
   },
 ];
+
+export const demoPlans = [
+  {
+    name: "Bare Bones",
+    price: "0",
+    yearlyPrice: "0",
+    period: "month",
+    features: [
+      "Real-time tracking for every dollar",
+      "Income & expense dashboard",
+      "Smart budgeting to dodge bad buys",
+      "Manual investment dashboard",
+      "Community forum support",
+    ],
+    description:
+      "Free forever, because we’re not here to rob you. Track your spending, plan your budget, and manually add your investments — all you need to stop bleeding cash, no credit card needed.",
+    buttonText: "Start Free",
+    href: "#",
+  },
+  {
+    name: "Full Stack",
+    price: "10",
+    yearlyPrice: "8",
+    period: "month",
+    features: [
+      "Everything in Bare Bones",
+      "Investment broker sync for lazy pros",
+      "Daily AI insights to roast your spending",
+      "Export to CSV for your autism spreadsheets",
+      "24/7 priority support",
+    ],
+    description:
+      "Ten bucks unlocks the full app. Get broker sync and AI insights that roast your bad buys, so you can flex on your finances like a pro.",
+    buttonText: "Unlock the Full App",
+    href: "#",
+    isPopular: true,
+  },
+  {
+    name: "Money Inferno",
+    price: "50",
+    yearlyPrice: "40",
+    period: "month",
+    features: [
+      "Everything in Full Stack",
+      "Early access to new features",
+      "VIP support (we’ll DM you memes)",
+      "Exclusive app swag",
+      "Bragging rights for burning cash",
+    ],
+    description:
+      "For ballers with cash to burn. Fifty bucks gets you the full app, VIP perks, and a warm fuzzy feeling for fueling our late-night coding binges. Go big or go broke.",
+    buttonText: "Burn It",
+    href: "#",
+  },
+];

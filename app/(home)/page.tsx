@@ -4,6 +4,8 @@ import { FAQ } from "@/components/home/faq";
 import Features from "@/components/home/features";
 import Hero from "@/components/home/hero";
 import HowItWorks from "@/components/home/how-it-works";
+import { Pricing } from "@/components/pricing";
+import { demoPlans } from "@/constants";
 
 export default function Home() {
   return (
@@ -32,6 +34,12 @@ export default function Home() {
       <Features />
 
       <HowItWorks />
+
+      <Pricing
+        title="Pick Your Vibe, Save Your Cash"
+        description="Choose a plan that fits your grind and quit doomscrolling your finances into oblivion. From free to baller, we’ve got you covered to track, plan, and win — no excuses."
+        plans={demoPlans}
+      />
 
       <FAQ />
 
