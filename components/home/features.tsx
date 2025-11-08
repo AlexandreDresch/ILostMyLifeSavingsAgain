@@ -161,7 +161,7 @@ export default function Features() {
         />
       </div>
 
-      <div ref={containerRef} className="relative w-full bg-black">
+      <div ref={containerRef} className="relative w-full bg-black pt-10">
         <section
           ref={sectionRef}
           className="relative h-screen w-full overflow-hidden flex items-center justify-center"
@@ -176,7 +176,7 @@ export default function Features() {
             >
               <motion.div
                 ref={featuresRef}
-                className="flex flex-col gap-8 max-w-3xl mx-auto lg:mx-0"
+                className="flex flex-col gap-8 w-full md:max-w-3xl mx-auto lg:mx-0"
               >
                 <div className="relative h-[200px]">
                   <AnimatePresence mode="wait">
@@ -205,7 +205,7 @@ export default function Features() {
 
               <motion.div
                 ref={mockupRef}
-                className="relative w-full max-w-[300px] md:max-w-[471px] mx-auto"
+                className="relative hidden md:block w-full max-w-[300px] md:max-w-[471px] mx-auto"
               >
                 <motion.div
                   className="absolute w-[300px] h-[317px] md:w-[472px] md:h-[500px] bg-[#090909] rounded-sm z-0"

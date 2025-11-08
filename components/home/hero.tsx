@@ -129,7 +129,7 @@ export default function Hero({
   return (
     <motion.section
       className={cn(
-        "relative flex w-full min-h-screen flex-col overflow-hidden bg-background text-foreground md:flex-row",
+        "relative flex w-full h-auto md:min-h-screen flex-col overflow-hidden bg-background text-foreground md:flex-row",
         className
       )}
       initial="hidden"
@@ -180,9 +180,9 @@ export default function Hero({
             )}
           </motion.header>
 
-          <motion.main variants={containerVariants}>
+          <motion.main variants={containerVariants} className="flex flex-col items-center md:items-start">
             <motion.h1
-              className="text-4xl font-bold leading-tight text-foreground md:text-5xl lg:text-6xl"
+              className="text-4xl text-center md:text-left font-bold leading-tight text-foreground md:text-5xl lg:text-6xl"
               variants={itemVariants}
               whileHover={{ scale: 1.02 }}
               transition={{ type: "spring", stiffness: 200 }}
@@ -198,7 +198,7 @@ export default function Hero({
             />
 
             <motion.p
-              className="mb-8 max-w-md text-base text-muted-foreground md:text-lg"
+              className="mb-8 max-w-md text-base text-center md:text-left text-muted-foreground md:text-lg"
               variants={itemVariants}
               whileHover={{ scale: 1.01 }}
               transition={{ type: "spring", stiffness: 200 }}
@@ -220,10 +220,8 @@ export default function Hero({
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.5, duration: 0.6, ease: "easeOut" }}
         >
-  
-
          <motion.div
-            className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/60 text-base flex items-center gap-2"
+            className="absolute bottom-8 left-1/2 z-50 transform -translate-x-1/2 text-white/60 text-base flex items-center gap-2"
             animate={{ opacity: [0.5, 1, 0.5] }}
             transition={{ duration: 2, repeat: Infinity }}
           >
@@ -241,7 +239,7 @@ export default function Hero({
 
       <motion.div
         ref={imageRef}
-        className="relative w-full min-h-[50vh] md:w-1/2 md:min-h-screen lg:w-2/5 overflow-hidden"
+        className="relative w-full min-h-[50vh] hidden md:block md:w-1/2 md:min-h-screen lg:w-2/5 overflow-hidden"
         style={{
           clipPath: "polygon(15% 0, 100% 0, 100% 100%, 0% 100%)",
         }}

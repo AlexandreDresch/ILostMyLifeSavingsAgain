@@ -45,7 +45,7 @@ function FAQHeader({ title, subtitle }: { title: string; subtitle: string }) {
       <span className="mb-8 bg-gradient-to-r from-slate-400 to-slate-400/60 bg-clip-text font-medium text-transparent">
         {subtitle}
       </span>
-      <h2 className="mb-8 text-5xl font-bold">{title}</h2>
+      <h2 className="mb-8 text-5xl font-bold text-center">{title}</h2>
       <span className="absolute -top-[350px] left-[50%] z-0 h-[500px] w-[600px] -translate-x-[50%] rounded-full bg-gradient-to-r from-slate-500/10 to-slate-500/5 blur-3xl" />
     </div>
   );
@@ -61,13 +61,13 @@ function FAQTabs({
   setSelected: React.Dispatch<React.SetStateAction<string>>;
 }) {
   return (
-    <div className="relative z-10 flex flex-wrap items-center justify-center gap-4">
+    <div className="relative z-10 flex flex-wrap items-center-safe justify-center-safe gap-2 md:gap-4">
       {Object.entries(categories).map(([key, label]) => (
         <button
           key={key}
           onClick={() => setSelected(key)}
           className={cn(
-            "relative overflow-hidden whitespace-nowrap rounded-sm border px-3 py-1.5 text-sm font-medium",
+            "relative overflow-hidden whitespace-nowrap rounded-sm border px-3 py-1.5 text-sm font-medium w-full md:w-auto",
             selected === key
               ? "border-slate-200 text-cyan-500"
               : "border-border text-muted-foreground hover:text-foreground"

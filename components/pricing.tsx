@@ -245,10 +245,12 @@ function PricingCard({ plan, index }: { plan: PricingPlan; index: number }) {
             href={plan.href}
             className={cn(
               buttonVariants({
-                variant: plan.isPopular ? "default" : "outline",
+                variant: "outline",
                 size: "lg",
               }),
-              "w-full"
+
+              "w-full",
+              plan.isPopular && "!border-cyan-500"
             )}
           >
             {plan.buttonText}
