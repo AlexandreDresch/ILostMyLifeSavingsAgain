@@ -3,6 +3,10 @@
 import { useState } from "react";
 import { motion, AnimatePresence, Transition } from "framer-motion";
 import { Check, ChevronRight, ChevronLeft, Edit2 } from "lucide-react";
+import Image from "next/image";
+import { Button } from "../ui/button";
+import { CurrencyComboBox } from "../currency-combo-box";
+import type { Currency } from "@/types";
 
 const languages = ["English", "Spanish", "French", "German", "Mandarin"];
 
@@ -32,6 +36,8 @@ const spendingHabits = [
   "Online Shopping Spree",
   "Travel Splurger",
   "Daily Coffee Fiend",
+  "Impulse Buyer",
+  "Other",
 ];
 
 const transitionProps: Transition = {
@@ -56,24 +62,24 @@ function ChipButton({
       layout
       initial={false}
       animate={{
-        backgroundColor: isSelected ? "#ff00ff" : "rgba(39, 39, 42, 0.5)",
+        backgroundColor: isSelected ? "#06b6d4" : "rgba(39, 39, 42, 0.5)",
       }}
       whileHover={{
-        backgroundColor: isSelected ? "#ff00ff" : "rgba(39, 39, 42, 0.8)",
+        backgroundColor: isSelected ? "#06b6d4" : "rgba(39, 39, 42, 0.8)",
       }}
       whileTap={{
-        backgroundColor: isSelected ? "#cc00cc" : "rgba(39, 39, 42, 0.9)",
+        backgroundColor: isSelected ? "#0891b2" : "rgba(39, 39, 42, 0.9)",
       }}
       transition={{
         ...transitionProps,
         backgroundColor: { duration: 0.1 },
       }}
       className={`
-        inline-flex items-center px-4 py-2 rounded-full text-base font-medium
+        inline-flex items-center px-4 py-2 rounded-lg text-base font-medium
         whitespace-nowrap overflow-hidden ring-1 ring-inset
         ${
           isSelected
-            ? "text-white ring-[#ff00ff]/50"
+            ? "text-white ring-cyan-500/50"
             : "text-zinc-400 ring-[hsla(0,0%,100%,0.06)]"
         }
       `}
@@ -113,18 +119,17 @@ function ChipButton({
 export default function OnboardingWizard() {
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedLanguage, setSelectedLanguage] = useState<string>("");
+  const [selectedCurrency, setSelectedCurrency] = useState<Currency | null>(null);
   const [selectedInvestments, setSelectedInvestments] = useState<string[]>([]);
   const [selectedExperience, setSelectedExperience] = useState<string>("");
   const [selectedGoals, setSelectedGoals] = useState<string[]>([]);
   const [selectedHabits, setSelectedHabits] = useState<string[]>([]);
 
-  const totalSteps = 6;
+  const totalSteps = 8;
 
   const toggleInvestment = (investment: string) => {
     setSelectedInvestments((prev) =>
-      prev.includes(investment)
-        ? prev.filter((i) => i !== investment)
-        : [...prev, investment]
+      prev.includes(investment) ? prev.filter((i) => i !== investment) : [...prev, investment]
     );
   };
 
@@ -155,27 +160,31 @@ export default function OnboardingWizard() {
   const handleSubmit = () => {
     console.log("Preferences submitted:", {
       language: selectedLanguage,
+      currency: selectedCurrency?.label,
       investments: selectedInvestments,
       experience: selectedExperience,
       goals: selectedGoals,
       habits: selectedHabits,
     });
-    alert("Preferences saved! Time to stop bleeding cash.");
   };
 
   const canProceed = () => {
     switch (currentStep) {
       case 1:
-        return selectedLanguage !== "";
+        return true;
       case 2:
-        return selectedInvestments.length > 0;
+        return selectedLanguage !== "";
       case 3:
-        return selectedExperience !== "";
+        return selectedCurrency !== null;
       case 4:
-        return selectedGoals.length > 0;
+        return selectedInvestments.length > 0;
       case 5:
-        return selectedHabits.length > 0;
+        return selectedExperience !== "";
       case 6:
+        return selectedGoals.length > 0;
+      case 7:
+        return selectedHabits.length > 0;
+      case 8:
         return true;
       default:
         return false;
@@ -183,8 +192,8 @@ export default function OnboardingWizard() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-[#1a1a1a] to-[#ff00ff]/40 flex items-center justify-center p-6">
-      <div className="w-full max-w-[540px]">
+    <div className="min-h-full w-full flex justify-center pt-48 pb-24">
+      <div className="w-full max-w-7xl">
         <div className="mb-12">
           <div className="flex items-center gap-2 mb-3">
             <span className="text-zinc-400 text-sm font-medium">
@@ -193,7 +202,7 @@ export default function OnboardingWizard() {
           </div>
           <div className="w-full h-1 bg-zinc-800 rounded-full overflow-hidden">
             <motion.div
-              className="h-full bg-[#ff00ff]"
+              className="h-full bg-cyan-500"
               initial={{ width: "0%" }}
               animate={{ width: `${(currentStep / totalSteps) * 100}%` }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
@@ -210,6 +219,28 @@ export default function OnboardingWizard() {
             transition={{ duration: 0.3 }}
           >
             {currentStep === 1 && (
+              <div className="flex gap-4 justify-between">
+                <div className="max-w-3xl">
+                  <h1 className="text-white text-xl font-semibold mb-4">
+                    First of all, we need to know you.
+                  </h1>
+                  <p className="text-zinc-400 text-base mb-12">
+                    We’re not here to creep on you, just to map out your financial mess. Drop a few details to customize your hustle and keep your wallet from vanishing. Quicker than your last late-night scroll.
+                  </p>
+                </div>
+                <div>
+                  <Image
+                    src="/pepe/pepe-wizard.png"
+                    alt="Onboarding Pepe Illustration"
+                    width={300}
+                    height={200}
+                    priority
+                  />
+                </div>
+              </div>
+            )}
+
+            {currentStep === 2 && (
               <div>
                 <h1 className="text-white text-xl font-semibold mb-4">
                   What’s your language vibe?
@@ -234,14 +265,27 @@ export default function OnboardingWizard() {
               </div>
             )}
 
-            {currentStep === 2 && (
+            {currentStep === 3 && (
+              <div>
+                <h1 className="text-white text-xl font-semibold mb-4">
+                  What’s your currency?
+                </h1>
+                <p className="text-zinc-400 text-base mb-12">
+                  Pick a currency so your numbers don’t look like monopoly money.
+                </p>
+                <div className="max-w-xs">
+                  <CurrencyComboBox />
+                </div>
+              </div>
+            )}
+
+            {currentStep === 4 && (
               <div>
                 <h1 className="text-white text-xl font-semibold mb-4">
                   What investments are you playing with?
                 </h1>
                 <p className="text-zinc-400 text-base mb-12">
-                  Select all that apply — we’ll track ‘em manually or sync with
-                  a broker if you’re fancy.
+                  Select all that apply — we’ll track ‘em manually or sync with a broker if you’re fancy.
                 </p>
                 <motion.div
                   className="flex flex-wrap gap-3 overflow-visible"
@@ -260,14 +304,13 @@ export default function OnboardingWizard() {
               </div>
             )}
 
-            {currentStep === 3 && (
+            {currentStep === 5 && (
               <div>
                 <h1 className="text-white text-xl font-semibold mb-4">
                   How much of a money nerd are you?
                 </h1>
                 <p className="text-zinc-400 text-base mb-12">
-                  Tell us your experience level so we don’t overwhelm you (or
-                  bore you).
+                  Tell us your experience level so we don’t overwhelm you (or bore you).
                 </p>
                 <motion.div
                   className="flex flex-wrap gap-3 overflow-visible"
@@ -286,7 +329,7 @@ export default function OnboardingWizard() {
               </div>
             )}
 
-            {currentStep === 4 && (
+            {currentStep === 6 && (
               <div>
                 <h1 className="text-white text-xl font-semibold mb-4">
                   What’s your financial endgame?
@@ -311,7 +354,7 @@ export default function OnboardingWizard() {
               </div>
             )}
 
-            {currentStep === 5 && (
+            {currentStep === 7 && (
               <div>
                 <h1 className="text-white text-xl font-semibold mb-4">
                   What’s draining your wallet?
@@ -336,8 +379,8 @@ export default function OnboardingWizard() {
               </div>
             )}
 
-            {currentStep === 6 && (
-              <div>
+            {currentStep === 8 && (
+              <div className="w-full max-w-full">
                 <h1 className="text-white text-xl font-semibold mb-4">
                   Check Your Money Vibe
                 </h1>
@@ -345,39 +388,55 @@ export default function OnboardingWizard() {
                   Review your picks before we lock in your financial glow-up.
                 </p>
                 <div className="space-y-6">
-                  <div className="p-6 border border-zinc-800 bg-[rgba(25,25,28,0)] rounded-3xl">
+                  <div className="p-6 border border-zinc-800 bg-[rgba(25,25,28,0)] rounded-sm">
                     <div className="flex items-center justify-between mb-3">
                       <h3 className="text-white font-medium">Language</h3>
-                      <button
-                        onClick={() => setCurrentStep(1)}
-                        className="text-[#ff00ff] hover:text-[#cc00cc] transition-colors flex items-center gap-1 text-sm"
+                      <Button
+                        onClick={() => setCurrentStep(2)}
+                        className="cursor-pointer text-cyan-500 hover:text-cyan-600 transition-colors flex items-center gap-1 text-sm"
                       >
-                        <Edit2 className="w-3 h-3" />
+                        <Edit2 className="size-3" />
                         Edit
-                      </button>
+                      </Button>
                     </div>
                     <p className="text-zinc-400">
                       {selectedLanguage || "Not selected"}
                     </p>
                   </div>
 
-                  <div className="p-6 border border-zinc-800 bg-[rgba(25,25,28,0)] rounded-3xl">
+                  <div className="p-6 border border-zinc-800 bg-[rgba(25,25,28,0)] rounded-sm">
+                    <div className="flex items-center justify-between mb-3">
+                      <h3 className="text-white font-medium">Currency</h3>
+                      <Button
+                        onClick={() => setCurrentStep(3)}
+                        className="cursor-pointer text-cyan-500 hover:text-cyan-600 transition-colors flex items-center gap-1 text-sm"
+                      >
+                        <Edit2 className="size-3" />
+                        Edit
+                      </Button>
+                    </div>
+                    <p className="text-zinc-400">
+                      {selectedCurrency?.label || "Not selected"}
+                    </p>
+                  </div>
+
+                  <div className="p-6 border border-zinc-800 bg-[rgba(25,25,28,0)] rounded-sm">
                     <div className="flex items-center justify-between mb-3">
                       <h3 className="text-white font-medium">Investments</h3>
-                      <button
-                        onClick={() => setCurrentStep(2)}
-                        className="text-[#ff00ff] hover:text-[#cc00cc] transition-colors flex items-center gap-1 text-sm"
+                      <Button
+                        onClick={() => setCurrentStep(4)}
+                        className="cursor-pointer text-cyan-500 hover:text-cyan-600 transition-colors flex items-center gap-1 text-sm"
                       >
-                        <Edit2 className="w-3 h-3" />
+                        <Edit2 className="size-3" />
                         Edit
-                      </button>
+                      </Button>
                     </div>
                     <div className="flex flex-wrap gap-2">
                       {selectedInvestments.length > 0 ? (
                         selectedInvestments.map((investment) => (
                           <span
                             key={investment}
-                            className="px-3 py-1 bg-[#ff00ff]/20 text-[#ff00ff] rounded-full text-sm"
+                            className="px-3 py-1 bg-cyan-500/20 text-cyan-500 rounded-full text-sm"
                           >
                             {investment}
                           </span>
@@ -388,47 +447,41 @@ export default function OnboardingWizard() {
                     </div>
                   </div>
 
-                  <div className="p-6 border border-zinc-800 bg-[rgba(25,25,28,0)] rounded-3xl">
+                  <div className="p-6 border border-zinc-800 bg-[rgba(25,25,28,0)] rounded-sm">
                     <div className="flex items-center justify-between mb-3">
-                      <h3 className="text-white font-medium">
-                        Experience Level
-                      </h3>
-                      <button
-                        onClick={() => setCurrentStep(3)}
-                        className="text-[#ff00ff] hover:text-[#cc00cc] transition-colors flex items-center gap-1 text-sm"
+                      <h3 className="text-white font-medium">Experience Level</h3>
+                      <Button
+                        onClick={() => setCurrentStep(5)}
+                        className="cursor-pointer text-cyan-500 hover:text-cyan-600 transition-colors flex items-center gap-1 text-sm"
                       >
-                        <Edit2 className="w-3 h-3" />
+                        <Edit2 className="size-3" />
                         Edit
-                      </button>
+                      </Button>
                     </div>
                     <p className="text-zinc-400">
                       {selectedExperience
-                        ? `${
-                            experienceLevels.indexOf(selectedExperience) + 1
-                          } - ${selectedExperience}`
+                        ? `${experienceLevels.indexOf(selectedExperience) + 1} - ${selectedExperience}`
                         : "Not selected"}
                     </p>
                   </div>
 
-                  <div className="p-6 border border-zinc-800 bg-[rgba(25,25,28,0)] rounded-3xl">
+                  <div className="p-6 border border-zinc-800 bg-[rgba(25,25,28,0)] rounded-sm">
                     <div className="flex items-center justify-between mb-3">
-                      <h3 className="text-white font-medium">
-                        Financial Goals
-                      </h3>
-                      <button
-                        onClick={() => setCurrentStep(4)}
-                        className="text-[#ff00ff] hover:text-[#cc00cc] transition-colors flex items-center gap-1 text-sm"
+                      <h3 className="text-white font-medium">Financial Goals</h3>
+                      <Button
+                        onClick={() => setCurrentStep(6)}
+                        className="cursor-pointer text-cyan-500 hover:text-cyan-600 transition-colors flex items-center gap-1 text-sm"
                       >
-                        <Edit2 className="w-3 h-3" />
+                        <Edit2 className="size-3" />
                         Edit
-                      </button>
+                      </Button>
                     </div>
                     <div className="flex flex-wrap gap-2">
                       {selectedGoals.length > 0 ? (
                         selectedGoals.map((goal) => (
                           <span
                             key={goal}
-                            className="px-3 py-1 bg-[#ff00ff]/20 text-[#ff00ff] rounded-full text-sm"
+                            className="px-3 py-1 bg-cyan-500/20 text-cyan-500 rounded-full text-sm"
                           >
                             {goal}
                           </span>
@@ -439,25 +492,23 @@ export default function OnboardingWizard() {
                     </div>
                   </div>
 
-                  <div className="p-6 border border-zinc-800 bg-[rgba(25,25,28,0)] rounded-3xl">
+                  <div className="p-6 border border-zinc-800 bg-[rgba(25,25,28,0)] rounded-sm">
                     <div className="flex items-center justify-between mb-3">
-                      <h3 className="text-white font-medium">
-                        Spending Habits
-                      </h3>
-                      <button
-                        onClick={() => setCurrentStep(5)}
-                        className="text-[#ff00ff] hover:text-[#cc00cc] transition-colors flex items-center gap-1 text-sm"
+                      <h3 className="text-white font-medium">Spending Habits</h3>
+                      <Button
+                        onClick={() => setCurrentStep(7)}
+                        className="cursor-pointer text-cyan-500 hover:text-cyan-600 transition-colors flex items-center gap-1 text-sm"
                       >
-                        <Edit2 className="w-3 h-3" />
+                        <Edit2 className="size-3" />
                         Edit
-                      </button>
+                      </Button>
                     </div>
                     <div className="flex flex-wrap gap-2">
                       {selectedHabits.length > 0 ? (
                         selectedHabits.map((habit) => (
                           <span
                             key={habit}
-                            className="px-3 py-1 bg-[#ff00ff]/20 text-[#ff00ff] rounded-full text-sm"
+                            className="px-3 py-1 bg-cyan-500/20 text-cyan-500 rounded-full text-sm"
                           >
                             {habit}
                           </span>
@@ -474,40 +525,38 @@ export default function OnboardingWizard() {
         </AnimatePresence>
 
         <div className="mt-12 flex justify-between items-center">
-          <button
+          <Button
             onClick={handleBack}
             disabled={currentStep === 1}
-            className={`flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all ${
-              currentStep === 1
-                ? "opacity-0 pointer-events-none"
-                : "bg-zinc-800 text-zinc-300 hover:bg-zinc-700"
+            className={`flex items-center gap-2 cursor-pointer px-6 py-3 rounded-sm font-medium transition-all ${
+              currentStep === 1 && "opacity-0 pointer-events-none"
             }`}
           >
-            <ChevronLeft className="w-4 h-4" />
+            <ChevronLeft className="size-4" />
             Back
-          </button>
+          </Button>
 
           {currentStep < totalSteps ? (
-            <button
+            <Button
               onClick={handleNext}
               disabled={!canProceed()}
-              className={`flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all ${
+              className={`flex items-center gap-2 cursor-pointer px-6 py-3 rounded-sm font-medium transition-all ${
                 canProceed()
-                  ? "bg-[#ff00ff] text-white hover:bg-[#cc00cc]"
+                  ? "bg-cyan-500 text-white hover:bg-cyan-600"
                   : "bg-zinc-800 text-zinc-600 cursor-not-allowed"
               }`}
             >
-              Next
-              <ChevronRight className="w-4 h-4" />
-            </button>
+              {currentStep === 1 ? "Let’s Go" : "Next"}
+              <ChevronRight className="size-4" />
+            </Button>
           ) : (
-            <button
+            <Button
               onClick={handleSubmit}
-              className="flex items-center gap-2 px-6 py-3 rounded-full font-medium bg-[#ff00ff] text-white hover:bg-[#cc00cc] transition-all"
+              className="flex items-center gap-2 px-6 py-3 rounded-sm cursor-pointer font-medium bg-cyan-500 text-white hover:bg-cyan-600 transition-all"
             >
               Submit
-              <Check className="w-4 h-4" />
-            </button>
+              <Check className="size-4" />
+            </Button>
           )}
         </div>
       </div>
