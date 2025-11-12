@@ -809,3 +809,41 @@ export const demoPlans = [
     href: "#",
   },
 ];
+
+export const languages = ["English", "Spanish", "French", "German", "Mandarin"];
+
+export const investmentTypes = [
+  "Stocks",
+  "Bonds",
+  "Real Estate",
+  "ETFs",
+  "Mutual Funds",
+  "Commodities",
+  "Cash",
+];
+
+export const experienceLevels = [
+  "Newbie",
+  "Rookie",
+  "Average Joe",
+  "Pro",
+  "Wizard",
+];
+
+export const financialGoals = [
+  "Save for a Big Purchase",
+  "Pay Off Debt",
+  "Build an Emergency Fund",
+  "Grow Investments",
+  "Retire Early",
+];
+
+export const spendingHabits = [
+  "Takeout Addict",
+  "Subscription Junkie",
+  "Online Shopping Spree",
+  "Travel Splurger",
+  "Daily Coffee Fiend",
+  "Impulse Buyer",
+  "Other",
+];

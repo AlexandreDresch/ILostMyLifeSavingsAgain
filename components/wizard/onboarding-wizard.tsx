@@ -7,38 +7,13 @@ import Image from "next/image";
 import { Button } from "../ui/button";
 import { CurrencyComboBox } from "../currency-combo-box";
 import type { Currency } from "@/types";
-
-const languages = ["English", "Spanish", "French", "German", "Mandarin"];
-
-const investmentTypes = [
-  "Stocks",
-  "Bonds",
-  "Real Estate",
-  "ETFs",
-  "Mutual Funds",
-  "Commodities",
-  "Cash",
-];
-
-const experienceLevels = ["Newbie", "Rookie", "Average Joe", "Pro", "Wizard"];
-
-const financialGoals = [
-  "Save for a Big Purchase",
-  "Pay Off Debt",
-  "Build an Emergency Fund",
-  "Grow Investments",
-  "Retire Early",
-];
-
-const spendingHabits = [
-  "Takeout Addict",
-  "Subscription Junkie",
-  "Online Shopping Spree",
-  "Travel Splurger",
-  "Daily Coffee Fiend",
-  "Impulse Buyer",
-  "Other",
-];
+import {
+  experienceLevels,
+  financialGoals,
+  investmentTypes,
+  languages,
+  spendingHabits,
+} from "@/constants";
 
 const transitionProps: Transition = {
   type: "spring",
@@ -119,7 +94,9 @@ function ChipButton({
 export default function OnboardingWizard() {
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedLanguage, setSelectedLanguage] = useState<string>("");
-  const [selectedCurrency, setSelectedCurrency] = useState<Currency | null>(null);
+  const [selectedCurrency, setSelectedCurrency] = useState<Currency | null>(
+    null
+  );
   const [selectedInvestments, setSelectedInvestments] = useState<string[]>([]);
   const [selectedExperience, setSelectedExperience] = useState<string>("");
   const [selectedGoals, setSelectedGoals] = useState<string[]>([]);
@@ -129,7 +106,9 @@ export default function OnboardingWizard() {
 
   const toggleInvestment = (investment: string) => {
     setSelectedInvestments((prev) =>
-      prev.includes(investment) ? prev.filter((i) => i !== investment) : [...prev, investment]
+      prev.includes(investment)
+        ? prev.filter((i) => i !== investment)
+        : [...prev, investment]
     );
   };
 
@@ -225,7 +204,10 @@ export default function OnboardingWizard() {
                     First of all, we need to know you.
                   </h1>
                   <p className="text-zinc-400 text-base mb-12">
-                    We’re not here to creep on you, just to map out your financial mess. Drop a few details to customize your hustle and keep your wallet from vanishing. Quicker than your last late-night scroll.
+                    We’re not here to creep on you, just to map out your
+                    financial mess. Drop a few details to customize your hustle
+                    and keep your wallet from vanishing. Quicker than your last
+                    late-night scroll.
                   </p>
                 </div>
                 <div>
@@ -268,13 +250,14 @@ export default function OnboardingWizard() {
             {currentStep === 3 && (
               <div>
                 <h1 className="text-white text-xl font-semibold mb-4">
-                  What’s your currency?
+                  What’s your favorite currency?
                 </h1>
                 <p className="text-zinc-400 text-base mb-12">
-                  Pick a currency so your numbers don’t look like monopoly money.
+                  Pick a currency so your numbers don’t look like monopoly
+                  money.
                 </p>
                 <div className="max-w-xs">
-                  <CurrencyComboBox />
+                  <CurrencyComboBox onCurrencySelect={setSelectedCurrency} />
                 </div>
               </div>
             )}
@@ -285,7 +268,8 @@ export default function OnboardingWizard() {
                   What investments are you playing with?
                 </h1>
                 <p className="text-zinc-400 text-base mb-12">
-                  Select all that apply — we’ll track ‘em manually or sync with a broker if you’re fancy.
+                  Select all that apply — we’ll track ‘em manually or sync with
+                  a broker if you’re fancy.
                 </p>
                 <motion.div
                   className="flex flex-wrap gap-3 overflow-visible"
@@ -310,7 +294,8 @@ export default function OnboardingWizard() {
                   How much of a money nerd are you?
                 </h1>
                 <p className="text-zinc-400 text-base mb-12">
-                  Tell us your experience level so we don’t overwhelm you (or bore you).
+                  Tell us your experience level so we don’t overwhelm you (or
+                  bore you).
                 </p>
                 <motion.div
                   className="flex flex-wrap gap-3 overflow-visible"
@@ -449,7 +434,9 @@ export default function OnboardingWizard() {
 
                   <div className="p-6 border border-zinc-800 bg-[rgba(25,25,28,0)] rounded-sm">
                     <div className="flex items-center justify-between mb-3">
-                      <h3 className="text-white font-medium">Experience Level</h3>
+                      <h3 className="text-white font-medium">
+                        Experience Level
+                      </h3>
                       <Button
                         onClick={() => setCurrentStep(5)}
                         className="cursor-pointer text-cyan-500 hover:text-cyan-600 transition-colors flex items-center gap-1 text-sm"
@@ -460,14 +447,18 @@ export default function OnboardingWizard() {
                     </div>
                     <p className="text-zinc-400">
                       {selectedExperience
-                        ? `${experienceLevels.indexOf(selectedExperience) + 1} - ${selectedExperience}`
+                        ? `${
+                            experienceLevels.indexOf(selectedExperience) + 1
+                          } - ${selectedExperience}`
                         : "Not selected"}
                     </p>
                   </div>
 
                   <div className="p-6 border border-zinc-800 bg-[rgba(25,25,28,0)] rounded-sm">
                     <div className="flex items-center justify-between mb-3">
-                      <h3 className="text-white font-medium">Financial Goals</h3>
+                      <h3 className="text-white font-medium">
+                        Financial Goals
+                      </h3>
                       <Button
                         onClick={() => setCurrentStep(6)}
                         className="cursor-pointer text-cyan-500 hover:text-cyan-600 transition-colors flex items-center gap-1 text-sm"
@@ -494,7 +485,9 @@ export default function OnboardingWizard() {
 
                   <div className="p-6 border border-zinc-800 bg-[rgba(25,25,28,0)] rounded-sm">
                     <div className="flex items-center justify-between mb-3">
-                      <h3 className="text-white font-medium">Spending Habits</h3>
+                      <h3 className="text-white font-medium">
+                        Spending Habits
+                      </h3>
                       <Button
                         onClick={() => setCurrentStep(7)}
                         className="cursor-pointer text-cyan-500 hover:text-cyan-600 transition-colors flex items-center gap-1 text-sm"

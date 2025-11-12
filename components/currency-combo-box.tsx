@@ -28,7 +28,11 @@ import { UserSettings } from "@prisma/client";
 import { updateUserCurrency } from "@/app/wizard/_actions/user-settings";
 import { toast } from "sonner";
 
-export function CurrencyComboBox() {
+interface CurrencyComboBoxProps {
+  onCurrencySelect?: (currency: Currency | null) => void;
+}
+
+export function CurrencyComboBox({ onCurrencySelect }: CurrencyComboBoxProps) {
   const [open, setOpen] = React.useState(false);
   const isDesktop = useMediaQuery("(min-width: 768px)");
   const [selectedCurrency, setSelectedCurrency] =
@@ -46,10 +50,12 @@ export function CurrencyComboBox() {
     mutationFn: updateUserCurrency,
     onSuccess: (data) => {
       toast.success(`Currency updated to ${data.currency} successfully!`);
-
-      setSelectedCurrency(
-        currencies.find((c) => c.value === data.currency) || null
-      );
+      const currency =
+        currencies.find((c) => c.value === data.currency) || null;
+      setSelectedCurrency(currency);
+      if (onCurrencySelect) {
+        onCurrencySelect(currency);
+      }
     },
     onError: () => {
       toast.error("Failed to update currency. Please try again.");
@@ -67,10 +73,13 @@ export function CurrencyComboBox() {
       }
 
       toast.loading("Updating currency...", { id: "update-currency" });
-
       mutation.mutate(currency.value);
+      setSelectedCurrency(currency);
+      if (onCurrencySelect) {
+        onCurrencySelect(currency);
+      }
     },
-    [mutation]
+    [mutation, onCurrencySelect]
   );
 
   React.useEffect(() => {
@@ -80,9 +89,12 @@ export function CurrencyComboBox() {
       );
       if (currency) {
         setSelectedCurrency(currency);
+        if (onCurrencySelect) {
+          onCurrencySelect(currency);
+        }
       }
     }
-  }, [userSettings.data]);
+  }, [userSettings.data, onCurrencySelect]);
 
   React.useEffect(() => {
     if (selectedCurrency && triggerRef.current) {
@@ -165,7 +177,11 @@ export function CurrencyComboBox() {
           </PopoverTrigger>
           <AnimatePresence>
             {open && (
-              <PopoverContent className="w-[200px] p-0 bg-slate-900/50 border-slate-700/50 backdrop-blur-sm" align="start" asChild>
+              <PopoverContent
+                className="w-[200px] p-0 bg-slate-900/50 border-slate-700/50 backdrop-blur-sm"
+                align="start"
+                asChild
+              >
                 <motion.div
                   ref={contentRef}
                   initial={{ opacity: 0, scale: 0.95, y: -10 }}
