@@ -5,10 +5,17 @@ import { gsap } from "gsap";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { navbarItems } from "@/constants";
-import NavbarItem from "./navbar-item";
 import { ThemeToggle } from "../theme-toggle-button";
 import Logo from "../logo";
 import { UserButton } from "@clerk/nextjs";
+import { NavItemMobile } from "../ui/navigation-menu";
+import { companyLinks, productLinks } from "./desktop-navbar";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "../ui/accordion";
 
 export default function MobileNavbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,6 +23,19 @@ export default function MobileNavbar() {
   const overlayRef = useRef<HTMLDivElement>(null);
   const hamburgerRef = useRef<HTMLButtonElement>(null);
   const itemsRef = useRef<HTMLDivElement[]>([]);
+
+  const sections = [
+    {
+      id: "product",
+      name: "Product",
+      list: productLinks,
+    },
+    {
+      id: "company",
+      name: "Company",
+      list: companyLinks,
+    },
+  ];
 
   const toggleMenu = () => {
     if (!isOpen) {
@@ -113,10 +133,6 @@ export default function MobileNavbar() {
     }
   };
 
-  const handleItemClick = () => {
-    closeMenu();
-  };
-
   useEffect(() => {
     const button = hamburgerRef.current;
     if (!button) return;
@@ -152,7 +168,7 @@ export default function MobileNavbar() {
 
   return (
     <>
-      <header className="block border-separate border-b border-slate-700/50 bg-background md:hidden">
+      <header className="block border-separate border-b border-slate-700/50 bg-background lg:hidden">
         <nav className="flex items-center justify-between px-4 py-3">
           <Logo className="size-10" />
 
@@ -171,7 +187,7 @@ export default function MobileNavbar() {
       {isOpen && (
         <div
           ref={overlayRef}
-          className="fixed inset-0 bg-black/90 backdrop-blur-sm z-40 md:hidden"
+          className="fixed inset-0 bg-black/90 backdrop-blur-sm z-40 lg:hidden"
           onClick={closeMenu}
         />
       )}
@@ -179,26 +195,28 @@ export default function MobileNavbar() {
       {isOpen && (
         <div
           ref={menuRef}
-          className="fixed top-0 right-0 h-full w-80 bg-background border-l border-slate-700/50 shadow-xl z-40 md:hidden"
+          className="fixed top-0 right-0 h-full w-80 bg-background border-l border-slate-700/50 shadow-xl z-40 lg:hidden"
         >
           <div className="flex flex-col h-full pt-20 px-6">
-            
-            <div className="flex flex-col space-y-2">
-              {navbarItems.map((item, index) => (
-                <div
-                  key={item.label}
-                  ref={(el) => {
-                    if (el) itemsRef.current[index] = el;
-                  }}
-                  className="opacity-0"
-                >
-                  <NavbarItem
-                    label={item.label}
-                    href={item.href}
-                    onClick={handleItemClick}
-                  />
-                </div>
-              ))}
+            <div className="container grid gap-y-2 overflow-y-auto px-4 pt-5 pb-12">
+              <Accordion type="single" collapsible>
+                {sections.map((section) => (
+                  <AccordionItem key={section.id} value={section.id}>
+                    <AccordionTrigger className="capitalize hover:no-underline">
+                      {section.id}
+                    </AccordionTrigger>
+                    <AccordionContent className="space-y-1 border-slate-700/50">
+                      <ul className="grid gap-1">
+                        {section.list.map((link) => (
+                          <li key={link.href}>
+                            <NavItemMobile item={link} href={link.href} className="" />
+                          </li>
+                        ))}
+                      </ul>
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
             </div>
 
             <div

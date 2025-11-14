@@ -254,7 +254,7 @@ function NavItemMobile({
 		>
 			<div
 				className={cn(
-					'bg-muted/20 flex size-10 items-center justify-center rounded-lg border',
+					'bg-muted/20 flex size-10 min-w-10 items-center justify-center rounded-md border border-slate-700/50',
 				)}
 			>
 				{item.icon && <item.icon />}

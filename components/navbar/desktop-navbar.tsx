@@ -33,110 +33,111 @@ import {
   ShoppingCart,
 } from "lucide-react";
 
-export default function DesktopNavbar() {
-  const companyLinks: NavItemType[] = [
-    {
-      title: "About the Chaos",
-      href: "/about",
-      description: "How we turned financial despair into a snarky app",
-      icon: Users,
-    },
-    {
-      title: "Meme-Worthy Wins",
-      href: "/stories",
-      description: "Users who didn’t lose *everything* using our tools",
-      icon: Star,
-    },
-    {
-      title: "Rules of the Game",
-      href: "/terms",
-      description: "The fine print for surviving our app",
-      icon: FileText,
-    },
-    {
-      title: "Privacy (LOL)",
-      href: "/privacy",
-      description: "We guard your data better than your portfolio",
-      icon: Shield,
-    },
-    {
-      title: "Refund Vibes",
-      href: "/refunds",
-      description: "How to beg for your money back",
-      icon: RotateCcw,
-    },
-    {
-      title: "Squad Up",
-      href: "/partnerships",
-      description: "Join forces with our meme-finance empire",
-      icon: Handshake,
-    },
-    {
-      title: "Dank Blog",
-      href: "/blog",
-      description: "Hot takes, finance memes, and bad advice",
-      icon: Newspaper,
-    },
-    {
-      title: "Help (Send It)",
-      href: "/support",
-      description: "For when you’re financially *and* emotionally lost",
-      icon: HelpCircle,
-    },
-  ];
+export const companyLinks: NavItemType[] = [
+  {
+    title: "About the Chaos",
+    href: "/about",
+    description: "How we turned financial despair into a snarky app",
+    icon: Users,
+  },
+  {
+    title: "Meme-Worthy Wins",
+    href: "/stories",
+    description: "Users who didn’t lose *everything* using our tools",
+    icon: Star,
+  },
+  {
+    title: "Rules of the Game",
+    href: "/terms",
+    description: "The fine print for surviving our app",
+    icon: FileText,
+  },
+  {
+    title: "Privacy (LOL)",
+    href: "/privacy",
+    description: "We guard your data better than your portfolio",
+    icon: Shield,
+  },
+  {
+    title: "Refund Vibes",
+    href: "/refunds",
+    description: "How to beg for your money back",
+    icon: RotateCcw,
+  },
+  {
+    title: "Squad Up",
+    href: "/partnerships",
+    description: "Join forces with our meme-finance empire",
+    icon: Handshake,
+  },
+  {
+    title: "Dank Blog",
+    href: "/blog",
+    description: "Hot takes, finance memes, and bad advice",
+    icon: Newspaper,
+  },
+  {
+    title: "Help (Send It)",
+    href: "/support",
+    description: "For when you’re financially *and* emotionally lost",
+    icon: HelpCircle,
+  },
+];
 
-  const productLinks: NavItemType[] = [
-    {
-      title: "Budget or Bust",
-      href: "/features/budget",
-      description: "Track your cash before it vanishes again",
-      icon: DollarSign,
-    },
-    {
-      title: "Portfolio Pain",
-      href: "/features/portfolio",
-      description: "Watch your investments cry in real-time",
-      icon: PieChart,
-    },
-    {
-      title: "Meme Metrics",
-      href: "/features/analytics",
-      description: "Charts to confirm you’re NGMI",
-      icon: BarChart,
-    },
-    {
-      title: "Squad Goals",
-      href: "/features/collaboration",
-      description: "Plan financial doom with your frens",
-      icon: Users2,
-    },
-    {
-      title: "Turbo Transactions",
-      href: "/features/integrations",
-      description: "Link your bank before it links you",
-      icon: Zap,
-    },
-    {
-      title: "Meme Mart",
-      href: "/features/ecommerce",
-      description: "Buy stonks-themed merch, why not?",
-      icon: ShoppingCart,
-    },
-    {
-      title: "Fort Knox Mode",
-      href: "/features/security",
-      description: "Protect your pennies from hackers",
-      icon: Lock,
-    },
-    {
-      title: "Dev Shenanigans",
-      href: "/api",
-      description: "API for building your own financial mess",
-      icon: Code,
-    },
-  ];
+export const productLinks: NavItemType[] = [
+  {
+    title: "Budget or Bust",
+    href: "/features/budget",
+    description: "Track your cash before it vanishes again",
+    icon: DollarSign,
+  },
+  {
+    title: "Portfolio Pain",
+    href: "/features/portfolio",
+    description: "Watch your investments cry in real-time",
+    icon: PieChart,
+  },
+  {
+    title: "Meme Metrics",
+    href: "/features/analytics",
+    description: "Charts to confirm you’re NGMI",
+    icon: BarChart,
+  },
+  {
+    title: "Squad Goals",
+    href: "/features/collaboration",
+    description: "Plan financial doom with your frens",
+    icon: Users2,
+  },
+  {
+    title: "Turbo Transactions",
+    href: "/features/integrations",
+    description: "Link your bank before it links you",
+    icon: Zap,
+  },
+  {
+    title: "Meme Mart",
+    href: "/features/ecommerce",
+    description: "Buy stonks-themed merch, why not?",
+    icon: ShoppingCart,
+  },
+  {
+    title: "Fort Knox Mode",
+    href: "/features/security",
+    description: "Protect your pennies from hackers",
+    icon: Lock,
+  },
+  {
+    title: "Dev Shenanigans",
+    href: "/api",
+    description: "API for building your own financial mess",
+    icon: Code,
+  },
+];
+
+export default function DesktopNavbar() {
   return (
-    <header className="hidden border-separate border-b border-slate-700/50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 md:block sticky top-0 z-50">
+    <header className="hidden border-separate border-b border-slate-700/50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 lg:block sticky top-0 z-50">
       <nav className=" flex items-center justify-between px-8 w-full">
         <div className="flex h-[70px] min-h-[70px] items-center justify-between w-full gap-x-4">
           <Logo className="size-16" />
@@ -209,7 +210,7 @@ export default function DesktopNavbar() {
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                   <NavigationMenuLink
-                    className="cursor-pointer hover:text-cyan-500 transition-colors font-bold"
+                    className="cursor-pointer hover:text-cyan-500 transition-colors duration-300 font-bold"
                     href="/pricing"
                   >
                     Pricing
