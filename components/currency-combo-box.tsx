@@ -252,7 +252,7 @@ export function CurrencyComboBox({ onCurrencySelect }: CurrencyComboBoxProps) {
             </Button>
           </motion.div>
         </DrawerTrigger>
-        <DrawerContent className="bg-background">
+        <DrawerContent className="bg-slate-900/50 border-slate-700/50 backdrop-blur-sm rounded-s-xs">
           <motion.div
             className="mt-4 border-t"
             initial={{ opacity: 0, y: 20 }}

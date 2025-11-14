@@ -171,7 +171,7 @@ export default function OnboardingWizard() {
   };
 
   return (
-    <div className="min-h-full w-full flex justify-center pt-48 pb-24">
+    <div className="min-h-full w-full flex justify-center pt-48 pb-24 px-6">
       <div className="w-full max-w-7xl">
         <div className="mb-12">
           <div className="flex items-center gap-2 mb-3">
@@ -199,7 +199,7 @@ export default function OnboardingWizard() {
           >
             {currentStep === 1 && (
               <div className="flex gap-4 justify-between">
-                <div className="max-w-3xl">
+                <div className="w-full max-w-3xl">
                   <h1 className="text-white text-xl font-semibold mb-4">
                     First of all, we need to know you.
                   </h1>
@@ -210,13 +210,14 @@ export default function OnboardingWizard() {
                     late-night scroll.
                   </p>
                 </div>
-                <div>
+                <div className="hidden md:flex flex-col justify-end items-end h-full">
                   <Image
                     src="/pepe/pepe-wizard.png"
                     alt="Onboarding Pepe Illustration"
                     width={300}
                     height={200}
                     priority
+                    className=""
                   />
                 </div>
               </div>
