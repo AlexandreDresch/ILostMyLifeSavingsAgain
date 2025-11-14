@@ -142,24 +142,21 @@ export default function DesktopNavbar() {
           <Logo className="size-16" />
 
           <div className="flex items-center justify-center w-full h-full">
-            {/* {navbarItems.map((item) => (
-              <NavbarItem
-                key={item.label}
-                label={item.label}
-                href={item.href}
-              />
-            ))} */}
-
             <NavigationMenu className="hidden lg:block">
               <NavigationMenuList>
-                <NavigationMenuItem >
-                  <NavigationMenuTrigger>Product</NavigationMenuTrigger>
-                  <NavigationMenuContent >
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger className="font-bold">
+                    Product
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent>
                     <div className="grid w-full md:w-4xl md:grid-cols-[1fr_.30fr]">
                       <ul className="grid grow gap-4 p-4 md:grid-cols-3 md:border-r">
                         {productLinks.slice(0, 3).map((link) => (
                           <li key={link.href}>
-                            <NavGridCard link={link} />
+                            <NavGridCard
+                              link={link}
+                              className="border-slate-700/50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+                            />
                           </li>
                         ))}
                       </ul>
@@ -178,13 +175,18 @@ export default function DesktopNavbar() {
                   </NavigationMenuContent>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger>Company</NavigationMenuTrigger>
+                  <NavigationMenuTrigger className="font-bold">
+                    Company
+                  </NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <div className="grid w-full md:w-4xl md:grid-cols-[1fr_.40fr]">
                       <ul className="grid grow grid-cols-2 gap-4 p-4 md:border-r">
                         {companyLinks.slice(0, 2).map((link) => (
                           <li key={link.href}>
-                            <NavGridCard link={link} className="min-h-36" />
+                            <NavGridCard
+                              link={link}
+                              className="min-h-36 border-slate-700/50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+                            />
                           </li>
                         ))}
                         <div className="col-span-2 grid grid-cols-3 gap-x-4">
@@ -206,7 +208,10 @@ export default function DesktopNavbar() {
                   </NavigationMenuContent>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <NavigationMenuLink className="cursor-pointer">
+                  <NavigationMenuLink
+                    className="cursor-pointer hover:text-cyan-500 transition-colors font-bold"
+                    href="/pricing"
+                  >
                     Pricing
                   </NavigationMenuLink>
                 </NavigationMenuItem>
