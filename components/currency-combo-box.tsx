@@ -14,7 +14,12 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
-import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
+import {
+  Drawer,
+  DrawerContent,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
 import {
   Popover,
   PopoverContent,
@@ -27,6 +32,7 @@ import SkeletonWrapper from "./skeleton-wrapper";
 import { UserSettings } from "@prisma/client";
 import { updateUserCurrency } from "@/app/wizard/_actions/user-settings";
 import { toast } from "sonner";
+import VisuallyHidden from "./ui/visually-hidden";
 
 interface CurrencyComboBoxProps {
   onCurrencySelect?: (currency: Currency | null) => void;
@@ -253,6 +259,9 @@ export function CurrencyComboBox({ onCurrencySelect }: CurrencyComboBoxProps) {
           </motion.div>
         </DrawerTrigger>
         <DrawerContent className="bg-slate-900/50 border-slate-700/50 backdrop-blur-sm rounded-s-xs">
+          <VisuallyHidden>
+            <DrawerTitle>Select Currency</DrawerTitle>
+          </VisuallyHidden>
           <motion.div
             className="mt-4 border-t"
             initial={{ opacity: 0, y: 20 }}
