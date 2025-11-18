@@ -810,7 +810,7 @@ export const demoPlans = [
   },
 ];
 
-export const languages = ["English", "Spanish", "French", "German", "Mandarin"];
+export const languages = ["English", "Spanish", "Portuguese", "German", "Russian"];
 
 export const investmentTypes = [
   "Stocks",

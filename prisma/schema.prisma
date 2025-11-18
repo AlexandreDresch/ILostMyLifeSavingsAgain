@@ -7,34 +7,123 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// ----------------------
+// ENUMS
+// ----------------------
+enum TransactionType {
+  INCOME
+  EXPENSE
+  INVESTMENT
+}
+
+enum Currency {
+  USD
+  EUR
+  GBP
+  JPY
+  AUD
+  CAD
+  CNY
+  INR
+  RUB
+  BRL
+}
+
+enum AccountType {
+  CHECKING
+  CREDIT_CARD
+  BROKERAGE
+  CASH
+  CRYPTO_WALLET
+}
+
+// ----------------------
+// MODELS
+// ----------------------
+
+model User {
+  id       String        @id @default(uuid())
+  name     String
+  settings UserSettings?
+}
+
 model UserSettings {
-  userId   String @id
-  currency String
+  userId     String   @id
+  currency   Currency @default(USD)
+  language   String?  @default("en")
+  experience String?
+  goal       String?
+
+  User User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Category {
-  createdAt DateTime @default(now())
-  name      String
-  userId    String
-  type      String   @default("income")
+  id     String          @id @default(uuid())
+  name   String
+  userId String
+  type   TransactionType
+  icon   String?
+  color  String?
+
+  Transactions  Transaction[]
+  merchantRules MerchantRule[]
+  userRules     UserRule[]
 
   @@unique([name, userId, type])
+  @@index([userId])
+}
+
+model Account {
+  id       String      @id @default(uuid())
+  name     String
+  type     AccountType
+  userId   String
+  currency Currency    @default(BRL)
+
+  Transactions Transaction[]
+
+  @@index([userId])
+}
+
+model RuleTag {
+  id   String @id @default(uuid())
+  name String @unique
+
+  transactions  Transaction[]  @relation("TransactionTags")
+  merchantRules MerchantRule[] @relation("MerchantRuleTags")
+  userRules     UserRule[]     @relation("UserRuleTags")
 }
 
 model Transaction {
-  id           String   @id @default(uuid())
-  amount       Float
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @default(now())
-  date         DateTime
-  description  String
-  userId       String
-  type         String   @default("income")
-  category     String
-  categoryIcon String
+  id          String          @id @default(uuid())
+  amount      Float
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+  date        DateTime
+  description String
+  type        TransactionType
+  status      String?         @default("Completed")
+
+  tags RuleTag[] @relation("TransactionTags")
+
+  userId     String
+  categoryId String?
+  accountId  String?
+
+  Category Category? @relation(fields: [categoryId], references: [id])
+  Account  Account?  @relation(fields: [accountId], references: [id])
+
+  @@index([userId])
+  @@index([date])
+  @@index([categoryId])
+  @@index([accountId])
 }
 
-model MonthHistory {
+// ----------------------
+// ANALYTICS DATA
+// ----------------------
+
+model DayHistory {
   day      Int
   month    Int
   year     Int
@@ -43,9 +132,10 @@ model MonthHistory {
   userId   String
 
   @@id([day, month, year, userId])
+  @@index([userId, month, year])
 }
 
-model YearHistory {
+model MonthHistory {
   month    Int
   year     Int
   income   Float  @default(0)
@@ -53,4 +143,44 @@ model YearHistory {
   userId   String
 
   @@id([month, year, userId])
+  @@index([userId, year])
+}
+
+model YearHistory {
+  year     Int
+  income   Float  @default(0)
+  expenses Float  @default(0)
+  userId   String
+
+  @@id([year, userId])
+}
+
+// ----------------------
+// AUTO-CATEGORIZATION RULES
+// ----------------------
+
+model MerchantRule {
+  id         String          @id @default(uuid())
+  keyword    String          @unique
+  categoryId String
+  type       TransactionType
+
+  tags RuleTag[] @relation("MerchantRuleTags")
+
+  Category Category @relation(fields: [categoryId], references: [id])
+}
+
+model UserRule {
+  id         String          @id @default(uuid())
+  userId     String
+  keyword    String
+  categoryId String
+  type       TransactionType
+
+  tags RuleTag[] @relation("UserRuleTags")
+
+  Category Category @relation(fields: [categoryId], references: [id])
+
+  @@unique([userId, keyword])
+  @@index([userId])
 }
