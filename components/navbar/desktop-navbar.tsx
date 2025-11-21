@@ -149,7 +149,7 @@ export default function DesktopNavbar() {
                   <NavigationMenuTrigger className="font-bold">
                     Product
                   </NavigationMenuTrigger>
-                  <NavigationMenuContent>
+                  <NavigationMenuContent className="bg-slate-950/95 backdrop-blur supports-[backdrop-filter]:bg-slate-950/90">
                     <div className="grid w-full md:w-4xl md:grid-cols-[1fr_.30fr]">
                       <ul className="grid grow gap-4 p-4 md:grid-cols-3 md:border-r">
                         {productLinks.slice(0, 3).map((link) => (
