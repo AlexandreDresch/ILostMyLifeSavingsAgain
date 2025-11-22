@@ -1,4 +1,5 @@
 import { MarketChart } from "@/components/stocks/market-chart";
+import { MarketTreemap } from "@/components/stocks/market-treemap";
 
 export default function Dashboard() {
   return (
@@ -6,6 +7,10 @@ export default function Dashboard() {
       <div className="grid grid-cols-1 xl:grid-cols-12 gap-6">
         <div className="xl:col-span-4 flex flex-col gap-6">
           <MarketChart />
+        </div>
+
+        <div className="xl:col-span-8">
+          <MarketTreemap />
         </div>
       </div>
     </section>
