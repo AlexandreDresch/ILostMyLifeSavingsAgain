@@ -847,3 +847,59 @@ export const spendingHabits = [
   "Impulse Buyer",
   "Other",
 ];
+
+export const newsStories = [
+  {
+    id: 1,
+    title:
+      "EUR/USD: Euro Rally Cools Off After Powell's Speech Knocked the Dollar — Rate Cuts Coming?",
+    source: "ForexLive",
+    time: "yesterday",
+    tags: ["EUR", "USD"],
+    image: "/euro.jpg",
+  },
+  {
+    id: 2,
+    title:
+      "ETH/USD: Ether Hits Record Near $5,000 but Traders Chicken Out — Wild 7% Drop Appears",
+    source: "CryptoDaily",
+    time: "yesterday",
+    tags: ["ETH", "Crypto"],
+    image: "/ethereum-abstract.png",
+  },
+  {
+    id: 3,
+    title:
+      "SPX: S&P 500 Futures Dip After Powell's Speech Pumped Stocks Friday. Next Up — Nvidia Earnings",
+    source: "MarketWatch",
+    time: "yesterday",
+    tags: ["SPX", "Stocks"],
+    image: "/stock-market.jpg",
+  },
+  {
+    id: 4,
+    title:
+      "GBP/USD: Sterling Drops 1.5% After Hitting Resistance at Double Top. What's Next?",
+    source: "FXStreet",
+    time: "3 days ago",
+    tags: ["GBP", "USD"],
+    image: "/pound.jpg",
+  },
+  {
+    id: 5,
+    title:
+      "LCID: Lucid Stock Too Cheap? It's Getting Ten Times More Expensive — Here's Why",
+    source: "Benzinga",
+    time: "3 days ago",
+    tags: ["LCID", "EV"],
+    image: "/modern-electric-car.png",
+  },
+  {
+    id: 6,
+    title: "GOOGL: Alphabet Stock Ticks Up as Google Strikes $10 Billion Deal",
+    source: "Reuters",
+    time: "3 days ago",
+    tags: ["GOOGL", "Tech"],
+    image: "/google-homepage.png",
+  },
+];

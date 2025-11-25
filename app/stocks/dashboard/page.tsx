@@ -1,5 +1,6 @@
 import { MarketChart } from "@/components/stocks/market-chart";
 import { MarketTreemap } from "@/components/stocks/market-treemap";
+import { NewsFeed } from "@/components/stocks/news-feed";
 
 export default function Dashboard() {
   return (
@@ -11,6 +12,10 @@ export default function Dashboard() {
 
         <div className="xl:col-span-8">
           <MarketTreemap />
+        </div>
+
+        <div className="xl:col-span-4">
+          <NewsFeed />
         </div>
       </div>
     </section>
