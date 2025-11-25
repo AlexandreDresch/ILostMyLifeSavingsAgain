@@ -11,6 +11,7 @@ import {
   treemap as d3Treemap,
   HierarchyRectangularNode,
 } from "d3-hierarchy";
+import { Quote, useSp100Live } from "@/hooks/use-sp100-live";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -57,14 +58,6 @@ const SP100_SYMBOLS = [
   "MDT",
 ];
 
-type Quote = {
-  symbol: string;
-  price?: number;
-  change?: number;
-  marketCap?: number;
-  name?: string;
-};
-
 type SPItem = {
   symbol: string;
   name: string;
@@ -103,48 +96,6 @@ function changeToHsl(changePct: number) {
   const sat = clamp(45 + Math.abs(pct) * 40, 40, 85);
   const light = clamp(38 + Math.abs(pct) * 12, 32, 55);
   return `hsl(${Math.round(hue)}, ${Math.round(sat)}%, ${Math.round(light)}%)`;
-}
-
-function useSp100Live(refreshMs = 20000) {
-  const [quotes, setQuotes] = useState<Record<string, Quote>>({});
-
-  useEffect(() => {
-    let mounted = true;
-
-    const fetchQuotes = async () => {
-      try {
-        const res = await fetch("/api/stocks");
-        if (!res.ok) return;
-
-        const json = await res.json();
-        if (!mounted) return;
-
-        const map: Record<string, Quote> = {};
-        Object.entries(json).forEach(([symbol, s]: any) => {
-          map[symbol] = {
-            symbol,
-            price: s.quote?.c ?? s.c ?? 0,
-            change: s.quote?.dp ?? s.dp ?? 0,
-            marketCap: s.marketCap ?? 1,
-            name: s.name ?? symbol,
-          };
-        });
-
-        setQuotes(map);
-      } catch (err) {
-        console.error("Stock fetch error:", err);
-      }
-    };
-
-    fetchQuotes();
-    const id = setInterval(fetchQuotes, refreshMs);
-    return () => {
-      mounted = false;
-      clearInterval(id);
-    };
-  }, [refreshMs]);
-
-  return quotes;
 }
 
 export function MarketTreemap() {
@@ -261,8 +212,7 @@ export function MarketTreemap() {
   return (
     <Card className="bg-background border-slate-700/50 h-full p-2 relative overflow-hidden">
       <div className="flex items-center justify-between px-2 pb-2">
-        <div className="text-sm font-semibold">S&P 100 — Treemap</div>
-        <div className="text-xs text-gray-400">Live market-cap weighted</div>
+        <div className="text-sm font-semibold">S&P 100 — Stocks</div>
       </div>
 
       <div
@@ -270,7 +220,6 @@ export function MarketTreemap() {
         className="mt-2 w-full rounded-md bg-[#0a0a0a] relative"
         style={{ minHeight: 420, height: 520 }}
       >
-        {/* Absolute tiles */}
         <div style={{ position: "relative", width: "100%", height: "100%" }}>
           {nodes.map((n) => {
             const w = Math.max(1, n.x1 - n.x0);
