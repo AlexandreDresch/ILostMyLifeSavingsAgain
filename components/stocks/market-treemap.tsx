@@ -90,13 +90,19 @@ function clamp(v: number, a: number, b: number) {
 }
 
 function changeToHsl(changePct: number) {
-  const MAX = 6;
+  const MAX = 5;
   const pct = clamp(changePct / MAX, -1, 1);
-  const hue = pct < 0 ? 10 + (pct + 1) * 40 : 60 + pct * 70;
-  const sat = clamp(45 + Math.abs(pct) * 40, 40, 85);
-  const light = clamp(38 + Math.abs(pct) * 12, 32, 55);
-  return `hsl(${Math.round(hue)}, ${Math.round(sat)}%, ${Math.round(light)}%)`;
+
+  const hue = pct < 0
+    ? 0 + pct * 10 
+    : 120 - (1 - pct) * 15;
+
+  const saturation = clamp(60 + Math.abs(pct) * 35, 65, 95);
+  const lightness = clamp(35 + Math.abs(pct) * 20, 32, 60);
+
+  return `hsl(${Math.round(hue)}, ${Math.round(saturation)}%, ${Math.round(lightness)}%)`;
 }
+
 
 export function MarketTreemap() {
   const quotes = useSp100Live(20000);
