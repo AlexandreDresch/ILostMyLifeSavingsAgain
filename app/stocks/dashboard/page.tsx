@@ -19,8 +19,10 @@ export default function Dashboard() {
           <NewsFeed />
         </div>
 
-        <div className="xl:col-span-8">
-          <MarketTable />
+        <div className="xl:col-span-8 min-h-0 overflow-hidden">
+          <div className="max-h-[600px] overflow-y-auto">
+            <MarketTable />
+          </div>
         </div>
       </div>
     </section>
