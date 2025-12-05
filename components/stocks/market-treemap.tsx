@@ -93,19 +93,18 @@ function changeToHsl(changePct: number) {
   const MAX = 5;
   const pct = clamp(changePct / MAX, -1, 1);
 
-  const hue = pct < 0
-    ? 0 + pct * 10 
-    : 120 - (1 - pct) * 15;
+  const hue = pct < 0 ? 0 + pct * 10 : 120 - (1 - pct) * 15;
 
   const saturation = clamp(60 + Math.abs(pct) * 35, 65, 95);
   const lightness = clamp(35 + Math.abs(pct) * 20, 32, 60);
 
-  return `hsl(${Math.round(hue)}, ${Math.round(saturation)}%, ${Math.round(lightness)}%)`;
+  return `hsl(${Math.round(hue)}, ${Math.round(saturation)}%, ${Math.round(
+    lightness
+  )}%)`;
 }
 
-
 export function MarketTreemap() {
-  const quotes = useSp100Live(20000);
+  const quotes = useSp100Live(60000);
   const prevQuotesRef = useRef<Record<string, Quote>>({});
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [size, setSize] = useState({ width: 1200, height: 600 });
@@ -137,12 +136,12 @@ export function MarketTreemap() {
       };
     });
 
-    const root = hierarchy<SPHierarchy>({ children: items })
-      .sum((d) => {
-        return typeof (d as any).marketCap === "number"
-          ? (d as any).marketCap
-          : 1;
-      })
+    const top20 = items.sort((a, b) => b.marketCap - a.marketCap).slice(0, 20);
+
+    const root = hierarchy<SPHierarchy>({ children: top20 })
+      .sum((d) =>
+        typeof (d as any).marketCap === "number" ? (d as any).marketCap : 1
+      )
       .sort((a, b) => (b.value ?? 0) - (a.value ?? 0));
 
     const treemapLayout = d3Treemap<SPItem>()
@@ -218,7 +217,7 @@ export function MarketTreemap() {
   return (
     <Card className="bg-background border-slate-700/50 h-full p-2 relative overflow-hidden">
       <div className="flex items-center justify-between px-2 pb-2">
-        <div className="text-sm font-semibold">S&P 100 — Stocks</div>
+        <div className="text-sm font-semibold">S&P 20 — Stocks</div>
       </div>
 
       <div

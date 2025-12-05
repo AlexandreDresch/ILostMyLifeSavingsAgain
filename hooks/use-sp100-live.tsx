@@ -9,7 +9,7 @@ export type Quote = {
   name?: string;
 };
 
-export function useSp100Live(refreshMs = 20000) {
+export function useSp100Live(refreshMs = 60000) {
   const [quotes, setQuotes] = useState<Record<string, Quote>>({});
 
   useEffect(() => {
