@@ -156,7 +156,7 @@ export default function DesktopNavbar() {
                           <li key={link.href}>
                             <NavGridCard
                               link={link}
-                              className="border-slate-700/50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+                              className="cursor-pointer border-slate-700/50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
                             />
                           </li>
                         ))}
@@ -179,14 +179,14 @@ export default function DesktopNavbar() {
                   <NavigationMenuTrigger className="font-bold">
                     Company
                   </NavigationMenuTrigger>
-                  <NavigationMenuContent>
+                  <NavigationMenuContent className="bg-slate-950/95 backdrop-blur supports-[backdrop-filter]:bg-slate-950/90">
                     <div className="grid w-full md:w-4xl md:grid-cols-[1fr_.40fr]">
                       <ul className="grid grow grid-cols-2 gap-4 p-4 md:border-r">
                         {companyLinks.slice(0, 2).map((link) => (
                           <li key={link.href}>
                             <NavGridCard
                               link={link}
-                              className="min-h-36 border-slate-700/50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+                              className="cursor-pointer min-h-36 border-slate-700/50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
                             />
                           </li>
                         ))}
