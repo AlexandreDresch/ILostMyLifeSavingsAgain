@@ -5,7 +5,7 @@ import { NewsFeed } from "@/components/stocks/news-feed";
 
 export default function Dashboard() {
   return (
-    <section className="p-4 md:p-6 space-y-6 max-w-[1920px] mx-auto">
+    <section className="p-4 pb-20 md:p-6 md:pb-20 space-y-6 max-w-[1920px] mx-auto">
       <div className="grid grid-cols-1 xl:grid-cols-12 gap-6">
         <div className="xl:col-span-4 flex flex-col gap-6">
           <MarketChart />
@@ -20,7 +20,7 @@ export default function Dashboard() {
         </div>
 
         <div className="xl:col-span-8 min-h-0 overflow-hidden">
-          <div className="max-h-[600px] overflow-y-auto">
+          <div className="max-h-[850px] overflow-y-auto">
             <MarketTable />
           </div>
         </div>
